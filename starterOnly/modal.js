@@ -147,7 +147,7 @@ document
 });
 
 
-//validation des conditions d'utilisation
+// validation des conditions d'utilisation
 document
   .getElementById("checkbox1")
   .addEventListener("change", function() {
@@ -160,3 +160,17 @@ document
     }
 });
 
+// vérification de la validité du formulaire au clic sur le bouton
+let formulaireValide = false;
+const boutonSoumettre = document.getElementById('formsend');
+boutonSoumettre.addEventListener("click", function(event) {
+    event.preventDefault();   
+    if (prenomValide && nomValide && emailValide && nbconcoursValide && placeValide && conditonsValide) {
+      formulaireValide = true;
+      console.log("formulaire validé:", formulaireValide);
+    } else {
+      formulaireValide = false;
+      console.log("formulaire validé:", formulaireValide);
+    }
+}
+)
