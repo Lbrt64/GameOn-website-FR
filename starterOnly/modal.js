@@ -21,3 +21,15 @@ function launchModal() {
 }
 
 
+// MANAGEMENT OF ISSUE #1
+
+// adding close button 
+const closeButton = document.querySelector(".close");
+
+// create a close function based on previous launchModal function
+function closeModal () {
+  modalbg.style.display = "none";
+}
+
+// trigger close function when clicking on close button
+closeButton.addEventListener("click", closeModal);
