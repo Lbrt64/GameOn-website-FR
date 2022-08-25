@@ -18,12 +18,6 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
-  // pour vérifier les variables au lancement de la popup
-  console.log(prenomValide);
-  console.log(nomValide);
-  console.log(nbconcoursValide);
-  console.log(placeValide);
-  console.log(conditonsValide);
 }
 
 
@@ -35,6 +29,16 @@ const closeButton = document.querySelector(".close");
 // create a close function based on previous launchModal function
 function closeModal () {
   modalbg.style.display = "none";
+    // réinitialiser tous les champs au lancement de la popup au cas où elle aurait été fermée
+    document.getElementById('first').value = '';
+    document.getElementById('last').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('quantity').value = '';
+    document.getElementById('birthdate').value = '';
+    var radioChecks = document.getElementsByName("location");
+    for(var i=0;i<radioChecks.length;i++)
+       radioChecks[i].checked = false;
+    document.getElementById('checkbox1').checked = true;
 }
 
 // trigger close function when clicking on close button
@@ -48,8 +52,7 @@ var nomValide = false;
 var emailValide = false;
 var nbconcoursValide = false;
 var placeValide = false;
-var conditonsValide = false;
-
+var conditonsValide = true;
 
 // vérifier la valeur du champ prénom 
 const prenomValue = document.getElementById("first")
