@@ -27,6 +27,7 @@ function launchModal() {
       var radioChecks = document.getElementsByName("location");
       for(var i=0;i<radioChecks.length;i++)
          radioChecks[i].checked = false;
+      document.getElementById('checkbox1').checked = true;
       firstValue.classList.remove("redborder");
       lastValue.classList.remove("redborder");
       emailValue.classList.remove("redborder");
@@ -203,13 +204,13 @@ document
 const checkbox1Value = document.getElementById("checkbox1")
 checkbox1Value.addEventListener("change", function() {
     if (document.getElementById('checkbox1').checked) {
-      conditonsValide = true;
+      checkbox1Valide = true;
       checkbox1Error.innerHTML = "";
       checkbox1Error.classList.remove("texteErreur")
       console.log("Condition d'utilisation validées")
       checkbox1Value.classList.remove("redborder");
     } else {
-      conditonsValide = false;
+      checkbox1Valide = false;
       checkbox1Error.innerHTML = "<p>Veuillez accepter les conditions</p>";
       checkbox1Error.classList.add("texteErreur")
       checkbox1Value.classList.add("redborder");
