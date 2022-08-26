@@ -226,6 +226,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
+
 /* 
 input[data-error]::after {
     content: attr(data-error);
@@ -527,3 +528,27 @@ footer {
   }
 }
 
+/* Luc */
+
+.redborder {
+  border: 2px solid #e54858;
+}
+
+.texteErreur {
+  color: #e54858;
+  font-family: var(--font-default);
+  font-size: 12px;
+  margin-left: -5px;
+}
+.texteErreur--centered {
+  color: #e54858;
+  font-family: var(--font-default);
+  font-size: 12px;
+  margin: auto;
+}
+
+
+.erreur {
+  height:18px;
+  width:100%;
+}

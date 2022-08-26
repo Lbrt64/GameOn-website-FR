@@ -53,22 +53,27 @@
 							<div class="formData">
 								<label for="first">Prénom</label><br />
 								<input class="text-control" type="text" id="first" name="first" minlength="2" required/><br />
+                <div class="erreur" id="firstError"></div>
 							</div>
 							<div class="formData">
 								<label for="last">Nom</label><br />
 								<input class="text-control" type="text" id="last" name="last" minlength="2" required/><br />
+                <div class="erreur" id="lastError"></div>
 							</div>
 							<div class="formData">
 								<label for="email">E-mail</label><br />
 								<input class="text-control" type="email" id="email" name="email" required/><br />
+                <div class="erreur" id="emailError"></div>
 							</div>
 							<div class="formData">
 								<label for="birthdate">Date de naissance</label><br />
 								<input class="text-control" type="date" id="birthdate" name="birthdate" required/><br />
+                <div class="erreur" id="birthdateError"></div>
 							</div>
 							<div class="formData">
 								<label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br />
 								<input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" />
+                <div class="erreur" id="quantityError"></div>
 							</div>
 
 							<div class="formData" id="radioSelect">
@@ -79,6 +84,7 @@
 								<input class="checkbox-input" type="radio" name="location" value="Chicago" id="location4" /> <label class="checkbox-label" for="location4"><span class="checkbox-icon"></span>Chicago</label>
 								<input class="checkbox-input" type="radio" name="location" value="Boston" id="location5" /> <label class="checkbox-label" for="location5"><span class="checkbox-icon"></span>Boston</label>
 								<input class="checkbox-input" type="radio" name="location" value="Portland" id="location6" /> <label class="checkbox-label" for="location6"><span class="checkbox-icon"></span>Portland</label>
+                <div class="erreur" id="locationError"></div>
 							</div>
 
 							<div class="formData">
@@ -87,16 +93,18 @@
 									<span class="checkbox-icon"></span>
 									J'ai lu et accepté les conditions d'utilisation.
 								</label>
+                <div class="erreur" id="checkbox1Error"></div>
 								<br />
 								<input class="checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" />
 								<label class="checkbox2-label" for="checkbox2">
 									<span class="checkbox-icon"></span>
-									Je Je souhaite être prévenu des prochains évènements.
+									Je souhaite être prévenu des prochains évènements.
 								</label>
 								<br />
 							</div>
 
 							<input class="btn-submit button" type="submit" value="C'est parti" id="formsend" />
+              <div class="erreur" id="submitError"></div>
 						</form>
 					</div>
 				</div>
