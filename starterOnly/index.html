@@ -49,25 +49,25 @@
 				<div class="content">
 					<span class="close"></span>
 					<div class="modal-body">
-						<form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+						<form name="reserve" action="index.html" method="get"">
 							<div class="formData">
 								<label for="first">Prénom</label><br />
-								<input class="text-control" type="text" id="first" name="first" minlength="2" required/><br />
+								<input class="text-control" type="text" id="first" name="first" minlength="2" /><br />
                 <div class="erreur" id="firstError"></div>
 							</div>
 							<div class="formData">
 								<label for="last">Nom</label><br />
-								<input class="text-control" type="text" id="last" name="last" minlength="2" required/><br />
+								<input class="text-control" type="text" id="last" name="last" minlength="2" /><br />
                 <div class="erreur" id="lastError"></div>
 							</div>
 							<div class="formData">
 								<label for="email">E-mail</label><br />
-								<input class="text-control" type="email" id="email" name="email" required/><br />
+								<input class="text-control" type="email" id="email" name="email" /><br />
                 <div class="erreur" id="emailError"></div>
 							</div>
 							<div class="formData">
 								<label for="birthdate">Date de naissance</label><br />
-								<input class="text-control" type="date" id="birthdate" name="birthdate" required/><br />
+								<input class="text-control" type="date" id="birthdate" name="birthdate" /><br />
                 <div class="erreur" id="birthdateError"></div>
 							</div>
 							<div class="formData">
@@ -89,7 +89,7 @@
 
 							<div class="formData">
 								<input class="checkbox-input" type="checkbox" id="checkbox1" name="checkbox1" checked />
-								<label class="checkbox2-label" for="checkbox1" required>
+								<label class="checkbox2-label" for="checkbox1" >
 									<span class="checkbox-icon"></span>
 									J'ai lu et accepté les conditions d'utilisation.
 								</label>
@@ -109,6 +109,19 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="bground" id="thankYou">
+				<div class="content">
+					<span class="close" id="thankYouCloseCross"></span>
+					<div class="modal-body">
+							<div class="thankYouMessage"><p>Merci pour votre inscription!</p></div>
+							<input class="btn-submit button" type="submit" value="Fermer" id="thankYouCloseBtn" />
+					</div>
+				</div>
+			</div>
+
+
+
 		</main>
 		<footer>
 			<p class="copyrights">

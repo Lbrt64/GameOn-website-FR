@@ -552,3 +552,17 @@ footer {
   height:18px;
   width:100%;
 }
+
+.thankYouMessage {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#thankYou .content {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}

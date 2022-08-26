@@ -27,13 +27,10 @@ function launchModal() {
       var radioChecks = document.getElementsByName("location");
       for(var i=0;i<radioChecks.length;i++)
          radioChecks[i].checked = false;
-      prenomValue.classList.remove("redborder");
-      nomValue.classList.remove("redborder");
+      firstValue.classList.remove("redborder");
+      lastValue.classList.remove("redborder");
       emailValue.classList.remove("redborder");
-      dateValue.classList.remove("redborder");
       quantityValue.classList.remove("redborder");
-      locationValue.classList.remove("redborder");
-      birthdateValue.classList.remove("redborder");
       checkbox1Value.classList.remove("redborder");
       firstError.innerHTML = "";
       lastError.innerHTML = "";
@@ -42,8 +39,6 @@ function launchModal() {
       quantityError.innerHTML = "";
       locationError.innerHTML = "";
       checkbox1Error.innerHTML = "";
-
-
 }
 
 
@@ -63,12 +58,12 @@ closeButton.addEventListener("click", closeModal);
 // MANAGEMENT OF ISSUE #2
 
 // Creation des conditons de validation
-var prenomValide = false;
-var nomValide = false;
+var firstValide = false;
+var lastValide = false;
 var emailValide = false;
-var nbconcoursValide = false;
-var placeValide = false;
-var conditonsValide = true;
+var quantityValide = false;
+var locationValide = false;
+var checkbox1Valide = true;
 
 // Ajout des div qui affichent les messages d'erreur
 var firstError = document.getElementById("firstError");
@@ -81,38 +76,38 @@ var checkbox1Error = document.getElementById("checkbox1Error");
 
 
 // vérifier la valeur du champ prénom 
-const prenomValue = document.getElementById("first")
-prenomValue.addEventListener("input", function(e) {
+const firstValue = document.getElementById("first")
+firstValue.addEventListener("input", function(e) {
   var value = e.target.value;
   if (value.match(/[A-Za-z]{2,}$/)) {
-    prenomValide = true;
+    firstValide = true;
     console.log("Prenom valide")
     firstError.innerHTML = "";
     firstError.classList.remove("texteErreur")
-    prenomValue.classList.remove("redborder");
+    firstValue.classList.remove("redborder");
   } else {
-    prenomValide = false;
-    prenomValue.classList.add("redborder");
+    firstValide = false;
+    firstValue.classList.add("redborder");
     firstError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du prénom</p>";
     firstError.classList.add("texteErreur")
     console.log("Prenom non valide");
   }
-  console.log(prenomValide)
+  console.log(firstValide)
 });
 
 // vérifier la valeur du champ nom 
-const nomValue = document.getElementById("last")
-nomValue.addEventListener("input", function(e) {
+const lastValue = document.getElementById("last")
+lastValue.addEventListener("input", function(e) {
   var value = e.target.value;
   if (value.match(/[A-Za-z]{2,}$/)) {
-    nomValide = true;
+    lastValide = true;
     console.log("Nom Valide")
     lastError.innerHTML = "";
     lastError.classList.remove("texteErreur")
-    nomValue.classList.remove("redborder")
+    lastValue.classList.remove("redborder")
   } else {
-    nomValide = false;
-    nomValue.classList.add("redborder");
+    lastValide = false;
+    lastValue.classList.add("redborder");
     lastError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du nom</p>";
     lastError.classList.add("texteErreur")
     console.log("Nom non valide");
@@ -139,18 +134,18 @@ emailValue.addEventListener("input", function(e) {
 });
 
 // vérifier le nombre de concours
-const nbconcoursValue = document.getElementById("quantity")
-nbconcoursValue.addEventListener("input", function(e) {
+const quantityValue = document.getElementById("quantity")
+quantityValue.addEventListener("change", function(e) {
   var value = e.target.value;
-  if (value.match(/^[0-9]$/)) {
-    nbconcoursValide = true;
+  if (value.match(/^-?\d+\.?\d*$/)) {
+    quantityValide = true;
     console.log("Nombre de concours Valide")
     quantityError.innerHTML = "";
     quantityError.classList.remove("texteErreur")
     quantityValue.classList.remove("redborder");
   } else {
-    nbconcoursValide = false;
-    nbconcoursValue.classList.add("redborder");
+    quantityValide = false;
+    quantityValue.classList.add("redborder");
     console.log("Nombre de concours non Valide");
     quantityError.innerHTML = "<p>Veuillez remplir ce champ avec un nombre entre 0 et 99</p>";
     quantityError.classList.add("texteErreur")
@@ -160,44 +155,43 @@ nbconcoursValue.addEventListener("input", function(e) {
 // vérifier qu'un bouton radio est sélectionne
 
 // définition des variables pour chaque box radio
-var placeValue1 = false;
-var placeValue2 = false;
-var placeValue3 = false;
-var placeValue4 = false;
-var placeValue5 = false;
-var placeValue6 = false;
+var locationValue1 = false;
+var locationValue2 = false;
+var locationValue3 = false;
+var locationValue4 = false;
+var locationValue5 = false;
+var locationValue6 = false;
 
 document
   .getElementById("radioSelect")
   .addEventListener("input", function() {
     // vérifier un par un si les boutons sont sélectionnés
     if (document.getElementById('location1').checked) {
-      placeValue1 = true;
+      locationValue1 = true;
     }  
     if (document.getElementById('location2').checked) {
-      placeValue2 = true;
+      locationValue2 = true;
     }  
     if (document.getElementById('location3').checked) {
-      placeValue3 = true;
+      locationValue3 = true;
     }      
     if (document.getElementById('location4').checked) {
-      placeValue4 = true;
+      locationValue4 = true;
     }  
     if (document.getElementById('location5').checked) {
-      placeValue5 = true;
+      locationValue5 = true;
     }  
     if (document.getElementById('location6').checked) {
-      placeValue6 = true;
+      locationValue6 = true;
     }
     // si un bouton est sélectionné, on considère cette partie comme valide
-    if (placeValue1 || placeValue2 || placeValue3 || placeValue4 || placeValue5 || placeValue6) {
-      placeValide = true;
+    if (locationValue1 || locationValue2 || locationValue3 || locationValue4 || locationValue5 || locationValue6) {
+      locationValide = true;
       console.log("Location Sélectionnée")
       locationError.innerHTML = "";
       locationError.classList.remove("texteErreur")
     } else {
-      placeValide = false;
-      radioSelect.classList.add("redborder");
+      locationValide = false;
       console.log("Pas de location selectionnée")
       locationError.innerHTML = "<p>Veuillez choisir un lieu</p>";
       locationError.classList.add("texteErreur")
@@ -206,9 +200,8 @@ document
 
 
 // validation des conditions d'utilisation
-document
-  .getElementById("checkbox1")
-  .addEventListener("change", function() {
+const checkbox1Value = document.getElementById("checkbox1")
+checkbox1Value.addEventListener("change", function() {
     if (document.getElementById('checkbox1').checked) {
       conditonsValide = true;
       checkbox1Error.innerHTML = "";
@@ -219,25 +212,85 @@ document
       conditonsValide = false;
       checkbox1Error.innerHTML = "<p>Veuillez accepter les conditions</p>";
       checkbox1Error.classList.add("texteErreur")
+      checkbox1Value.classList.add("redborder");
       console.log("Merci de valider les conditions d'utilisation")
     }
 });
+
+// fonction de vérification des champs vides au clic 
+function checkEmpty () {
+    if (firstValide == false) {
+      firstError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du prénom</p>";
+      firstError.classList.add("texteErreur")
+      console.log("Prenom non valide");
+      firstValue.classList.add("redborder");
+    }
+    if (lastValide == false) {
+      lastValue.classList.add("redborder");
+      lastError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du nom</p>";
+      lastError.classList.add("texteErreur")
+      console.log("Nom non valide");
+    }
+    if (emailValide == false) {
+      emailValue.classList.add("redborder");
+      emailError.innerHTML = "<p>Veuillez entrer un email valide</p>";
+      emailError.classList.add("texteErreur")
+      console.log("Email non valide");
+    }
+    if (quantityValide == false) {
+      quantityValue.classList.add("redborder");
+      console.log("Nombre de concours non Valide");
+      quantityError.innerHTML = "<p>Veuillez remplir ce champ avec un nombre entre 0 et 99</p>";
+      quantityError.classList.add("texteErreur")
+    }
+    if (locationValide == false) {
+      console.log("Pas de location selectionnée")
+      locationError.innerHTML = "<p>Veuillez choisir un lieu</p>";
+      locationError.classList.add("texteErreur")
+    }
+    if (checkbox1Valide == false) {
+      checkbox1Error.innerHTML = "<p>Veuillez accepter les conditions</p>";
+      checkbox1Error.classList.add("texteErreur")
+      checkbox1Value.classList.add("redborder");
+      console.log("Merci de valider les conditions d'utilisation")
+    }
+  };
+
 
 // vérification de la validité du formulaire au clic sur le bouton
 let formulaireValide = false;
 const boutonSoumettre = document.getElementById('formsend');
 boutonSoumettre.addEventListener("click", function(event) {
-    event.preventDefault();   
-    if (prenomValide && nomValide && emailValide && nbconcoursValide && placeValide && conditonsValide) {
+    checkEmpty ();
+    event.preventDefault();  
+    if (firstValide && lastValide && emailValide && quantityValide && locationValide && checkbox1Valide) {
       formulaireValide = true;
       console.log("formulaire validé:", formulaireValide);
       submitError.innerHTML = "";
       submitError.classList.remove("texteErreur--centered")
+      closeModal();
+      launchthankYou();
     } else {
       formulaireValide = false;
       console.log("formulaire validé:", formulaireValide);
-      submitError.innerHTML = "<p>Veuillez compléter tous les champs requis pour valider</p>";
+      submitError.innerHTML = "<p>Veuillez compléter tous les champs requis pour valider le formulaire</p>";
       submitError.classList.add("texteErreur--centered")
     }
 }
 )
+
+// display Thank you page
+const thankYou = document.getElementById("thankYou")
+function launchthankYou() {
+  thankYou.style.display = "block";
+}
+
+// close Thank you page
+const thankYouCloseBtn = document.getElementById("thankYouCloseBtn")
+const thankYouCloseCross = document.getElementById("thankYouCloseCross")
+
+function thankYouClose() {
+  thankYou.style.display = "none";
+}
+thankYouCloseBtn.addEventListener("click", thankYouClose);
+thankYouCloseCross.addEventListener("click", thankYouClose);
