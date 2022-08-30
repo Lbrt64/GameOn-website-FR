@@ -534,12 +534,6 @@ footer {
   border: 2px solid #e54858;
 }
 
-.texteErreur {
-  color: #e54858;
-  font-family: var(--font-default);
-  font-size: 12px;
-  margin-left: -5px;
-}
 .texteErreur--centered {
   color: #e54858;
   font-family: var(--font-default);
@@ -551,6 +545,10 @@ footer {
 .erreur {
   height:18px;
   width:100%;
+  color: #e54858;
+  font-family: var(--font-default);
+  font-size: 12px;
+  display:none;
 }
 
 .thankYouMessage {

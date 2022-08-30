@@ -1,165 +1,14 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
 
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-      // réinitialiser tous les champs au lancement de la popup au cas où elle aurait été fermée, suppression des contours rouges et messages d'erreur
-      document.getElementById('first').value = ''; // document.forms["reserve"].reset()  form reset remet valeur par défaut
-      document.getElementById('last').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('quantity').value = '';
-      document.getElementById('birthdate').value = '';
-      var radioChecks = document.getElementsByName("location");
-      for(var i=0;i<radioChecks.length;i++)
-         radioChecks[i].checked = false;
-      document.getElementById('checkbox1').checked = true;
-      firstValue.classList.remove("redborder");
-      lastValue.classList.remove("redborder");
-      emailValue.classList.remove("redborder");
-      quantityValue.classList.remove("redborder");
-      checkbox1Value.classList.remove("redborder");
-      firstError.innerHTML = "";
-      lastError.innerHTML = "";
-      emailError.innerHTML = "";
-      birthdateError.innerHTML = "";
-      quantityError.innerHTML = "";
-      locationError.innerHTML = "";
-      checkbox1Error.innerHTML = "";
-}
 
 
 // MANAGEMENT OF ISSUE #1
 
-// adding close button 
-const closeButton = document.querySelector(".close");
-// queryselector peut poser pb si plusieurs éléments récupérer getelementbyID
-// ajouter fonction dans HTML avec onclick, checker pour le reste du code -- pas dans le html si conditions -- si code html existe pas encore
 
-// create a close function based on previous launchModal function
-function closeModal () {
-  modalbg.style.display = "none";
-}
-
-// trigger close function when clicking on close button
-closeButton.addEventListener("click", closeModal);
 
 
 // MANAGEMENT OF ISSUE #2
-
-// Creation des conditons de validation
-var firstValide = false;
-var lastValide = false;
-var emailValide = false;
-var quantityValide = false;
-var locationValide = false;
-var checkbox1Valide = true;
-
-// Ajout des div qui affichent les messages d'erreur
-var firstError = document.getElementById("firstError");
-var lastError = document.getElementById("lastError");
-var emailError = document.getElementById("emailError");
-var birthdateError = document.getElementById("birthdateError");
-var quantityError = document.getElementById("quantityError");
-var locationError = document.getElementById("locationError");
-var checkbox1Error = document.getElementById("checkbox1Error");
-
-
-// vérifier la valeur du champ prénom 
-const firstValue = document.getElementById("first")
-
-firstValue.addEventListener("input", function(e) {
-  // input, check keypress -- html onInput
-  var value = e.target.value;
-  if (value.match(/[A-Za-z]{2,}$/)) {
-    firstValide = true;
-    console.log("Prenom valide")
-    firstError.innerHTML = "";
-    firstError.classList.remove("texteErreur")
-    firstValue.classList.remove("redborder");
-  } else {
-    firstValide = false;
-    firstValue.classList.add("redborder");
-    firstError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du prénom</p>";
-    // message directement dans le html et utiliser style display = none 
-    firstError.classList.add("texteErreur") // directement gérer via la classe erreur
-    console.log("Prenom non valide");
-  }
-  console.log(firstValide)
-});
-
-// vérifier la valeur du champ nom 
-const lastValue = document.getElementById("last")
-lastValue.addEventListener("input", function(e) {
-  var value = e.target.value;
-  if (value.match(/[A-Za-z]{2,}$/)) {
-    lastValide = true;
-    console.log("Nom Valide")
-    lastError.innerHTML = "";
-    lastError.classList.remove("texteErreur")
-    lastValue.classList.remove("redborder")
-  } else {
-    lastValide = false;
-    lastValue.classList.add("redborder");
-    lastError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du nom</p>";
-    lastError.classList.add("texteErreur")
-    console.log("Nom non valide");
-  }
-});
-
-// vérifier l'email
-const emailValue = document.getElementById("email")
-emailValue.addEventListener("input", function(e) {
-  var value = e.target.value;
-  if (value.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)) // peu précis 
-   {
-    emailValide = true;
-    console.log("Email Valide")
-    emailError.innerHTML = "";
-    emailError.classList.remove("texteErreur")
-    emailValue.classList.remove("redborder");
-  } else {
-    emailValide = false;
-    emailValue.classList.add("redborder");
-    emailError.innerHTML = "<p>Veuillez entrer un email valide</p>";
-    emailError.classList.add("texteErreur")
-    console.log("Email non valide");
-  }
-});
-
-// vérifier le nombre de concours
-const quantityValue = document.getElementById("quantity")
-quantityValue.addEventListener("change", function(e) {
-  var value = e.target.value;
-  if (value.match(/^-?\d+\.?\d*$/)) // problème - accepte décimale
-   {
-    quantityValide = true;
-    console.log("Nombre de concours Valide")
-    quantityError.innerHTML = "";
-    quantityError.classList.remove("texteErreur")
-    quantityValue.classList.remove("redborder");
-  } else {
-    quantityValide = false;
-    quantityValue.classList.add("redborder");
-    console.log("Nombre de concours non Valide");
-    quantityError.innerHTML = "<p>Veuillez remplir ce champ avec un nombre entre 0 et 99</p>";
-    quantityError.classList.add("texteErreur")
-  }
-});
 
 // vérifier qu'un bouton radio est sélectionne
 
@@ -244,7 +93,7 @@ function checkEmpty () {
       emailValue.classList.add("redborder");
       emailError.innerHTML = "<p>Veuillez entrer un email valide</p>";
       emailError.classList.add("texteErreur")
-      console.log("Email non valide");
+      console.log("email non valide");
     }
     if (quantityValide == false) // parseInt("12").toString() == "12" exercice, appliquer à l'input, parseFloat pour décimale
     {
@@ -306,3 +155,345 @@ function thankYouClose() {
 }
 thankYouCloseBtn.addEventListener("click", thankYouClose);
 thankYouCloseCross.addEventListener("click", thankYouClose);
+
+
+// REFACTOR 30/08/2022
+
+//------------------- EXISTING CODE -------------------
+
+// DOM Elements
+const modalBtn = document.querySelectorAll(".modal-btn");
+const formData = document.querySelectorAll(".formData");
+
+// launch modal event -- replaced by onclick in html 
+// modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+
+//------------------- MY CODE ------------------- 
+
+
+// ISSUE 1 - OPEN AND CLOSE MODAL
+
+const modalbg = document.querySelector(".bground");
+
+// 1.1 OPEN MODAL 
+function displayModalForm1() {
+  modalbg.style.display = "block";
+  console.log("Affichage du formulaire");
+}
+
+function resetFormInputs() {
+  document.forms["reserve"].reset();
+  console.log("Réinitialisation des valeurs du formulaire");
+}
+
+function resetErrorMessages() {
+  firstError.style.display = "none";
+  lastError.style.display = "none";
+  emailError.style.display = "none";
+  quantityError.style.display = "none";
+  locationError.style.display = "none";
+  checkbox1Error.style.display = "none";
+  console.log("Réinitialisation des messages d'erreur du formulaire");
+}
+
+function resetErrorBorders () {
+  firstInput.classList.remove("redborder");
+  lastInput.classList.remove("redborder");
+  emailInput.classList.remove("redborder");
+  quantityInput.classList.remove("redborder");
+  checkbox1Input.classList.remove("redborder");
+  console.log("Réinitialisation des bordures rouges en cas d'erreur");
+}
+
+
+function launchModal() {
+  displayModalForm1();
+  resetFormInputs();
+  resetErrorMessages();
+  resetErrorBorders();
+}
+
+
+// 1.2 CLOSE MODAL 
+
+const modalClose = document.getElementById("form-close");
+
+function closeModal1 () {
+  modalbg.style.display = "none";
+}
+
+
+// ISSUES 2 & 3 - VERIFY VALUES FOR EACH FIELD, DISPLAY ERRORS, VALIDATE FORM
+
+// 2.1 VERIFY USER FIRST NAME (COMPLIANCE + NOT EMPTY)
+
+// VARIABLES
+
+var firstValide = false;
+var firstInput = document.getElementById("first")
+var firstError = document.getElementById("firstError");
+firstError.style.display = "none";
+
+// FIRST NAME ERRORS (Issue #3)
+
+function firstValid() {
+  firstValide = true;
+  firstError.style.display = "none";
+  firstInput.classList.remove("redborder");
+  console.log("first name valid");
+}
+
+function firstInvalid() {
+  firstValide = false;
+  firstError.style.display = "block";
+  firstInput.classList.add("redborder");
+  console.log("first name not valid");
+}
+
+// FIRST NAME VALUES CHECK
+
+function checkfirstEmpty() {
+  if (firstInput.value.length == 0) { 
+    firstInvalid() 
+  }
+}
+
+function checkfirstValue() {
+  firstInput.addEventListener("input", function(e) {
+    var value = e.target.value;
+    if (value.match(/[A-Za-z]{2,}$/)) {
+      firstValid()
+    } else {
+      firstInvalid();
+    }
+  });
+}
+
+// FIRST NAME VALIDATION 
+
+function checkfirstValidation() {
+  checkfirstEmpty();
+  checkfirstValue();
+};
+
+// 2.2 VERIFY USER LAST NAME (COMPLIANCE + NOT EMPTY)
+
+// VARIABLES
+
+var lastValide = false;
+var lastInput = document.getElementById("last")
+var lastError = document.getElementById("lastError");
+lastError.style.display = "none";
+
+// LAST NAME ERRORS (Issue #3)
+
+function lastValid() {
+  lastValide = true;
+  lastError.style.display = "none";
+  lastInput.classList.remove("redborder");
+  console.log("last name valid");
+}
+
+function lastInvalid() {
+  lastValide = false;
+  lastError.style.display = "block";
+  lastInput.classList.add("redborder");
+  console.log("last name not valid");
+}
+
+// LAST NAME VALUES CHECK
+
+function checklastEmpty() {
+  if (lastInput.value.length == 0) { 
+    lastInvalid() 
+  }
+}
+
+function checklastValue() {
+  lastInput.addEventListener("input", function(e) {
+    var value = e.target.value;
+    if (value.match(/[A-Za-z]{2,}$/)) {
+      lastValid()
+    } else {
+      lastInvalid();
+    }
+  });
+}
+
+// LAST NAME VALIDATION 
+
+function checklastValidation() {
+  checklastEmpty();
+  checklastValue();
+};
+
+
+// 2.3 VERIFY USER EMAIL (COMPLIANCE + NOT EMPTY)
+
+// VARIABLES
+
+var emailValide = false;
+var emailInput = document.getElementById("email")
+var emailError = document.getElementById("emailError");
+emailError.style.display = "none";
+
+// EMAIL ERRORS (Issue #3)
+
+function emailValid() {
+  emailValide = true;
+  emailError.style.display = "none";
+  emailInput.classList.remove("redborder");
+  console.log("email valid");
+}
+
+function emailInvalid() {
+  emailValide = false;
+  emailError.style.display = "block";
+  emailInput.classList.add("redborder");
+  console.log("email not valid");
+}
+
+// EMAIL VALUES CHECK
+
+function checkemailEmpty() {
+  if (emailInput.value.length == 0) { 
+    emailInvalid() 
+  }
+}
+
+function checkemailValue() {
+  emailInput.addEventListener("input", function(e) {
+    var value = e.target.value;
+    if (value.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)) {
+      emailValid()
+    } else {
+      emailInvalid();
+    }
+  });
+}
+
+// EMAIL VALIDATION 
+
+function checkemailValidation() {
+  checkemailEmpty();
+  checkemailValue();
+};
+
+// VERIFY BIRTHDATE -- won't do not required in specs 
+
+// 2.4 VERIFY QUANTITY OF TOURNAMENTS COMPLETED BY USER (COMPLIANCE + NOT EMPTY)
+
+// VARIABLES
+
+var quantityValide = false;
+var quantityInput = document.getElementById("quantity")
+var quantityError = document.getElementById("quantityError");
+quantityError.style.display = "none";
+
+// quantity ERRORS (Issue #3)
+
+function quantityValid() {
+  quantityValide = true;
+  quantityError.style.display = "none";
+  quantityInput.classList.remove("redborder");
+  console.log("quantity valid");
+}
+
+function quantityInvalid() {
+  quantityValide = false;
+  quantityError.style.display = "block";
+  quantityInput.classList.add("redborder");
+  console.log("quantity not valid");
+}
+
+// quantity VALUES CHECK
+
+function checkquantityEmpty() {
+  if (quantityInput.value.length == 0) { 
+    quantityInvalid() 
+  }
+}
+
+function checkquantityValue() {
+  quantityInput.addEventListener("input", function(e) {
+    var value = e.target.value;
+    if (value.match(/^\d+$/)) {
+      quantityValid()
+    } else {
+      quantityInvalid();
+    }
+  });
+}
+
+// quantity VALIDATION 
+
+function checkquantityValidation() {
+  checkquantityEmpty();
+  checkquantityValue();
+};
+
+
+
+// 2.5 VERIFY LOCATION OF TOURNAMENT WANTED BY USER (COMPLIANCE + NOT EMPTY)
+
+// 2.6 VERIFY IF CHECKBOX1 FOR TERMS AND CONDITIONS IS CHECKED (COMPLIANCE + NOT EMPTY)
+
+// 2.7 VERIFY IF ALL CONDITIONS ARE MET AT FORM SUBMISSION (COMPLIANCE + NOT EMPTY)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ISSUE 3 - DISPLAY ERROR MESSAGES FOR INCORRECT VALUES
+
+// 2.1 DISPLAY ERROR MESSAGES FOR FIRST NAME (COMPLIANCE + NOT EMPTY)
+
+// 2.2 DISPLAY ERROR MESSAGES FOR LAST NAME (COMPLIANCE + NOT EMPTY)
+
+// 2.3 DISPLAY ERROR MESSAGES FOR EMAIL (COMPLIANCE + NOT EMPTY)
+
+// DISPLAY ERROR MESSAGES FOR BIRTHDATE -- won't do not required in specs 
+
+// 2.4 DISPLAY ERROR MESSAGES FOR QUANTITY OF TOURNAMENTS COMPLETED BY USER (COMPLIANCE + NOT EMPTY)
+
+// 2.5 DISPLAY ERROR MESSAGES FOR LOCATION OF TOURNAMENT WANTED BY USER (COMPLIANCE + NOT EMPTY)
+
+// 2.6 DISPLAY ERROR MESSAGES FOR FOR TERMS AND CONDITIONS (COMPLIANCE + NOT EMPTY)
+
+// 2.7 DISPLAY ERROR MESSAGES FOR FORM SUBMISSION (COMPLIANCE)
+
+
+
+// ISSUE 4 - DISPLAY VALIDATION POPUP
+
+// 4.1 DISPLAY POPUP
+
+// 4.2 CLOSE POPUP 
+
+
+
+// ISSUE 5 - TESTING
+
+// 5.1 IMPLEMENT TESTING SCENARIOS FOR FORM
+
+// 5.2 FIX WRONG CODE 
+
+function editNav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}

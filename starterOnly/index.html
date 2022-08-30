@@ -33,47 +33,47 @@
 					<p class="hero-text">
 						Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !
 					</p>
-					<button class="btn-signup modal-btn">
+					<button class="btn-signup modal-btn" onclick="launchModal()">
 						je m'inscris
 					</button>
 				</div>
 				<div class="hero-img">
 					<img src="./bg_img.jpg" alt="img" />
 				</div>
-				<button class="btn-signup modal-btn">
+				<button class="btn-signup modal-btn" onclick="launchModal()">
 					je m'inscris
 				</button>
 			</div>
 
 			<div class="bground">
 				<div class="content">
-					<span class="close" onclick="closeModal()"></span>
+					<span class="close" id="form-close" onclick="closeModal1()"></span>
 					<div class="modal-body">
-						<form name="reserve" action="index.html" method="get"">
+						<form name="reserve" action="index.html" method="get">
 							<div class="formData">
 								<label for="first">Prénom</label><br />
-								<input class="text-control" type="text" id="first" name="first" minlength="2" /><br />
-                <div class="erreur" id="firstError"></div>
+								<input class="text-control" type="text" id="first" name="first" minlength="2" oninput="checkfirstValidation()" onfocusout="checkfirstValidation()"/><br />
+                <div class="erreur" id="firstError">Veuillez entrer deux caractères ou plus pour le champ du prénom</div>
 							</div>
 							<div class="formData">
 								<label for="last">Nom</label><br />
-								<input class="text-control" type="text" id="last" name="last" minlength="2" /><br />
-                <div class="erreur" id="lastError"></div>
+								<input class="text-control" type="text" id="last" name="last" minlength="2" oninput="checklastValidation()" onfocusout="checklastValidation()"/><br />
+								<div class="erreur" id="lastError">Veuillez entrer deux caractères ou plus pour le champ du nom</div>							
 							</div>
 							<div class="formData">
 								<label for="email">E-mail</label><br />
-								<input class="text-control" type="email" id="email" name="email" /><br />
-                <div class="erreur" id="emailError"></div>
+								<input class="text-control" type="email" id="email" name="email" oninput="checkemailValidation()" onfocusout="checkemailValidation()"/><br />
+								<div class="erreur" id="emailError">Veuillez entrer un email valide</div>							
 							</div>
 							<div class="formData">
 								<label for="birthdate">Date de naissance</label><br />
 								<input class="text-control" type="date" id="birthdate" name="birthdate" /><br />
-                <div class="erreur" id="birthdateError"></div>
+                				<div class="erreur" id="birthdateError"></div>
 							</div>
 							<div class="formData">
 								<label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br />
-								<input type="number" step="1" class="text-control" id="quantity" name="quantity" min="0" max="99" />
-                <div class="erreur" id="quantityError"></div>
+								<input type="number" step="1" class="text-control" id="quantity" name="quantity" min="0" max="99" oninput="checkquantityValidation()" onfocusout="checkquantityValidation()"/>
+								<div class="erreur" id="quantityError">Veuillez entrer une quantité valide</div>							
 							</div>
 
 							<div class="formData" id="radioSelect">
