@@ -19,7 +19,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
       // réinitialiser tous les champs au lancement de la popup au cas où elle aurait été fermée, suppression des contours rouges et messages d'erreur
-      document.getElementById('first').value = '';
+      document.getElementById('first').value = ''; // document.forms["reserve"].reset()  form reset remet valeur par défaut
       document.getElementById('last').value = '';
       document.getElementById('email').value = '';
       document.getElementById('quantity').value = '';
@@ -47,6 +47,8 @@ function launchModal() {
 
 // adding close button 
 const closeButton = document.querySelector(".close");
+// queryselector peut poser pb si plusieurs éléments récupérer getelementbyID
+// ajouter fonction dans HTML avec onclick, checker pour le reste du code -- pas dans le html si conditions -- si code html existe pas encore
 
 // create a close function based on previous launchModal function
 function closeModal () {
@@ -55,6 +57,7 @@ function closeModal () {
 
 // trigger close function when clicking on close button
 closeButton.addEventListener("click", closeModal);
+
 
 // MANAGEMENT OF ISSUE #2
 
@@ -78,7 +81,9 @@ var checkbox1Error = document.getElementById("checkbox1Error");
 
 // vérifier la valeur du champ prénom 
 const firstValue = document.getElementById("first")
+
 firstValue.addEventListener("input", function(e) {
+  // input, check keypress -- html onInput
   var value = e.target.value;
   if (value.match(/[A-Za-z]{2,}$/)) {
     firstValide = true;
@@ -90,7 +95,8 @@ firstValue.addEventListener("input", function(e) {
     firstValide = false;
     firstValue.classList.add("redborder");
     firstError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du prénom</p>";
-    firstError.classList.add("texteErreur")
+    // message directement dans le html et utiliser style display = none 
+    firstError.classList.add("texteErreur") // directement gérer via la classe erreur
     console.log("Prenom non valide");
   }
   console.log(firstValide)
@@ -119,7 +125,8 @@ lastValue.addEventListener("input", function(e) {
 const emailValue = document.getElementById("email")
 emailValue.addEventListener("input", function(e) {
   var value = e.target.value;
-  if (value.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)) {
+  if (value.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)) // peu précis 
+   {
     emailValide = true;
     console.log("Email Valide")
     emailError.innerHTML = "";
@@ -138,7 +145,8 @@ emailValue.addEventListener("input", function(e) {
 const quantityValue = document.getElementById("quantity")
 quantityValue.addEventListener("change", function(e) {
   var value = e.target.value;
-  if (value.match(/^-?\d+\.?\d*$/)) {
+  if (value.match(/^-?\d+\.?\d*$/)) // problème - accepte décimale
+   {
     quantityValide = true;
     console.log("Nombre de concours Valide")
     quantityError.innerHTML = "";
@@ -163,7 +171,7 @@ var locationValue4 = false;
 var locationValue5 = false;
 var locationValue6 = false;
 
-document
+document // document.forms["reserve"].location.value  -- syntaxe pour récuper dans formulaire valeur cochée
   .getElementById("radioSelect")
   .addEventListener("input", function() {
     // vérifier un par un si les boutons sont sélectionnés
@@ -238,7 +246,8 @@ function checkEmpty () {
       emailError.classList.add("texteErreur")
       console.log("Email non valide");
     }
-    if (quantityValide == false) {
+    if (quantityValide == false) // parseInt("12").toString() == "12" exercice, appliquer à l'input, parseFloat pour décimale
+    {
       quantityValue.classList.add("redborder");
       console.log("Nombre de concours non Valide");
       quantityError.innerHTML = "<p>Veuillez remplir ce champ avec un nombre entre 0 et 99</p>";
@@ -259,9 +268,11 @@ function checkEmpty () {
 
 
 // vérification de la validité du formulaire au clic sur le bouton
+// fonction de validation des champs -- puis la rappeler au click 
 let formulaireValide = false;
 const boutonSoumettre = document.getElementById('formsend');
-boutonSoumettre.addEventListener("click", function(event) {
+boutonSoumettre.addEventListener("click", function(event) // sur submit du formulaire pour éviter bug entrée
+{
     checkEmpty ();
     event.preventDefault();  
     if (firstValide && lastValide && emailValide && quantityValide && locationValide && checkbox1Valide) {
