@@ -33,7 +33,6 @@ const formData = document.querySelectorAll(".formData");
 // ISSUE 1 - OPEN AND CLOSE MODAL
 
 const modalbg = document.querySelector(".bground");
-const registerForm = document.getElementById("registerForm")
 
 // 1.1 OPEN MODAL 
 function displayModalForm1() {
@@ -121,7 +120,7 @@ function checkfirstEmpty() {
 function checkfirstValue() {
   firstInput.addEventListener("input", function(e) {
     var value = e.target.value;
-    if (value.match(/^[A-Za-z]{2,}$/)) {
+    if (value.match(/^[A-Za-z-éèêàâäiîçô]{2,}$/)) {
       firstValid()
     } else {
       firstInvalid();
@@ -172,7 +171,7 @@ function checklastEmpty() {
 function checklastValue() {
   lastInput.addEventListener("input", function(e) {
     var value = e.target.value;
-    if (value.match(/^[A-Za-z]{2,}/)) {
+    if (value.match(/^[A-Za-z-éèêàâäiîçô]{2,}/)) {
       lastValid()
     } else {
       lastInvalid();
@@ -388,6 +387,12 @@ function checkcheckbox1Validation() {
 
 var formValide = null;
 var formError = document.getElementById("formError");
+const registerForm = document.getElementById("registerForm");
+registerForm.addEventListener("submit", function(e) {
+ e.preventDefault();
+ console.log("form default prevented")
+})
+
 formError.style.display = "none";
 
 // FORM ERRORS (Issue #3)
@@ -418,19 +423,15 @@ function checkformCompletion() {
 };
 
 function formvalueCheck() {
-  registerForm.addEventListener("submit", function() {
-    if (firstValide && lastValide && emailValide && quantityValide && locationValide && checkbox1Valide) {
-      formValid();
-    } else {
-      formInvalid();
-    }
-  });
+  if (firstValide && lastValide && emailValide && quantityValide && locationValide && checkbox1Valide) {
+    formValid();
+  } else {
+    formInvalid();
+  }
 }
 
 // FORM VALIDATION
-
-function checkformValidation(e) {
-  e.preventDefault();
+function checkformValidation() {
   checkformCompletion();
   formvalueCheck();
 }

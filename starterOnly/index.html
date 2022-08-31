@@ -49,7 +49,7 @@
 				<div class="content">
 					<span class="close" id="form-close" onclick="closeModal1()"></span>
 					<div class="modal-body">
-						<form name="reserve" action="index.html" method="get" id="registerForm" onsubmit="checkformValidation(event)">
+						<form name="reserve" action="index.html" method="get" id="registerForm" onsubmit="checkformValidation()">
 							<div class="formData">
 								<label for="first">Prénom</label><br />
 								<input class="text-control" type="text" id="first" name="first" minlength="2" onclick="checkfirstValidation()"/><br />
@@ -78,12 +78,12 @@
 
 							<div class="formData" id="location">
 								<label for="location">A quel tournoi souhaitez-vous participer cette année ?</label><br />
-								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="New York" id="location1" /> <label class="checkbox-label" for="location1" "><span class="checkbox-icon"></span>New York</label>
-								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="San Francisco" id="location2" /> <label class="checkbox-label" for="location2"><span class="checkbox-icon""></span>San Francisco</label>
-								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Seattle" id="location3" /> <label class="checkbox-label" for="location3"><span class="checkbox-icon" "></span>Seattle</label>
-								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Chicago" id="location4" /> <label class="checkbox-label" for="location4"><span class="checkbox-icon" "></span>Chicago</label>
-								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Boston" id="location5" /> <label class="checkbox-label" for="location5"><span class="checkbox-icon" "></span>Boston</label>
-								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Portland" id="location6" /> <label class="checkbox-label" for="location6"><span class="checkbox-icon" "></span>Portland</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="New York" id="location1" /> <label class="checkbox-label" for="location1"><span class="checkbox-icon"></span>New York</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="San Francisco" id="location2" /> <label class="checkbox-label" for="location2"><span class="checkbox-icon"></span>San Francisco</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Seattle" id="location3" /> <label class="checkbox-label" for="location3"><span class="checkbox-icon"></span>Seattle</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Chicago" id="location4" /> <label class="checkbox-label" for="location4"><span class="checkbox-icon"></span>Chicago</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Boston" id="location5" /> <label class="checkbox-label" for="location5"><span class="checkbox-icon"></span>Boston</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Portland" id="location6" /> <label class="checkbox-label" for="location6"><span class="checkbox-icon"></span>Portland</label>
                 				<div class="erreur" id="locationError">Veuillez sélectionner une option</div>
 							</div>
 
