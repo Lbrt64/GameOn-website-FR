@@ -1,31 +1,47 @@
-// REFACTOR 30/08/2022
+//------------------- EXISTING CODE -------------------//
 
-//------------------- EXISTING CODE -------------------
+// Management of navigation menu
+function editNav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
 
 // DOM Elements
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
-// launch modal event -- replaced by onclick in html
-// modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-//------------------- MY CODE -------------------
 
+
+
+
+//------------------- NEW CODE -------------------//
+
+// ---------------------------
 // ISSUE 1 - OPEN AND CLOSE MODAL
+// ---------------------------
 
+// ---------------------------
+// PART 1 - OPEN THE MODAL 
+// ---------------------------
+// SUB FUNCTIONS THAT ARE USED BY THE MAIN FUNCTION BELOW TO OPEN THE MODAL 
+
+// Select the modal in the DOM to be able to access it for modification
 const modalbg = document.querySelector(".bground");
 
-// 1.1 OPEN MODAL
+// Display the modal form block
 function displayModalForm1() {
   modalbg.style.display = "block";
-  console.log("Affichage du formulaire");
 }
-
+// Resets form in case values were previously entered
 function resetFormInputs() {
   document.forms["reserve"].reset();
-  console.log("Réinitialisation des valeurs du formulaire");
 }
-
+// Resets error messages in case values were previously entered
 function resetErrorMessages() {
   firstError.style.display = "none";
   lastError.style.display = "none";
@@ -33,18 +49,19 @@ function resetErrorMessages() {
   quantityError.style.display = "none";
   locationError.style.display = "none";
   checkbox1Error.style.display = "none";
-  console.log("Réinitialisation des messages d'erreur du formulaire");
 }
-
+// Resets error borders on fields in case values were previously entered
 function resetErrorBorders() {
   firstInput.classList.remove("redborder");
   lastInput.classList.remove("redborder");
   emailInput.classList.remove("redborder");
   quantityInput.classList.remove("redborder");
   checkbox1Input.classList.remove("redborder");
-  console.log("Réinitialisation des bordures rouges en cas d'erreur");
 }
 
+// MAIN FUNCTION TO OPEN THE MODAL 
+// Launches all sub functions to reset the form if needed + open it
+// called on click on button "je m'inscris" in HTML 
 function launchModal() {
   displayModalForm1();
   resetFormInputs();
@@ -52,52 +69,67 @@ function launchModal() {
   resetErrorBorders();
 }
 
-// 1.2 CLOSE MODAL
-
-const modalClose = document.getElementById("form-close");
-
+// ---------------------------
+// PART 2 - CLOSE THE MODAL 
+// ---------------------------
+// Hides the form
+// called on click on popup cross button in HTML
+// called when form is validated
 function closeModal1() {
   modalbg.style.display = "none";
 }
 
+// ---------------------------
 // ISSUES 2 & 3 - VERIFY VALUES FOR EACH FIELD, DISPLAY ERRORS, VALIDATE FORM
+// ---------------------------
 
+// ---------------------------
 // 2.1 VERIFY USER FIRST NAME (COMPLIANCE + NOT EMPTY)
+// ---------------------------
 
-// VARIABLES
-
+// SETUP
+// By default the answer value is not valid 
 var firstValide = null;
-var firstInput = document.getElementById("first");
-var firstError = document.getElementById("firstError");
+// Identifying DOM elements for modification when needed 
+const firstInput = document.getElementById("first");
+const firstError = document.getElementById("firstError");
+// Hide error messages by default 
 firstError.style.display = "none";
 
 // FIRST NAME ERRORS (Issue #3)
-
+// Function that will be called when the validation criteria are met
+// Sets the answer value to valid 
+// Hides error messages and formatting if there are any
 function firstValid() {
   firstValide = true;
   firstError.style.display = "none";
   firstInput.classList.remove("redborder");
-  console.log("first name valid");
 }
 
+// Function that will be called when the validation criteria are NOT met
+// Sets the answer value to NOT valid 
+// Show error messages and formatting if needed
 function firstInvalid() {
   firstValide = false;
   firstError.style.display = "block";
   firstInput.classList.add("redborder");
-  console.log("first name not valid");
 }
 
 // FIRST NAME VALUES CHECK
-
+// Verifies if the field name is empty to make the answer invalid
+// Used in the global form check function 
 function checkfirstEmpty() {
   if (firstInput.value.length == 0) {
     firstInvalid();
   }
 }
 
+// When the field has a value, verifies if it matches the criteria at each new input 
+// Used in the global form check function 
 function checkfirstValue() {
   firstInput.addEventListener("input", function (e) {
     var value = e.target.value;
+    // the regex below verifies that there is only text and at least 2 characters + includes french special characters
     if (value.match(/^[A-Za-z-éèêàâäiîçô]{2,}$/)) {
       firstValid();
     } else {
@@ -107,38 +139,34 @@ function checkfirstValue() {
 }
 
 // FIRST NAME VALIDATION
-
+// Checks if the answer values are not empty, and match the criteria
+// Called on click in the form field for first name 
 function checkfirstValidation() {
   checkfirstEmpty();
   checkfirstValue();
 }
 
+// ---------------------------
 // 2.2 VERIFY USER LAST NAME (COMPLIANCE + NOT EMPTY)
-
-// VARIABLES
+// ---------------------------
+// For explanations see part 2.1 about the first name, its the same
 
 var lastValide = null;
-var lastInput = document.getElementById("last");
-var lastError = document.getElementById("lastError");
+const lastInput = document.getElementById("last");
+const lastError = document.getElementById("lastError");
 lastError.style.display = "none";
-
-// LAST NAME ERRORS (Issue #3)
 
 function lastValid() {
   lastValide = true;
   lastError.style.display = "none";
   lastInput.classList.remove("redborder");
-  console.log("last name valid");
 }
 
 function lastInvalid() {
   lastValide = false;
   lastError.style.display = "block";
   lastInput.classList.add("redborder");
-  console.log("last name not valid");
 }
-
-// LAST NAME VALUES CHECK
 
 function checklastEmpty() {
   if (lastInput.value.length == 0) {
@@ -157,39 +185,33 @@ function checklastValue() {
   });
 }
 
-// LAST NAME VALIDATION
-
 function checklastValidation() {
   checklastEmpty();
   checklastValue();
 }
 
+// ---------------------------
 // 2.3 VERIFY USER EMAIL (COMPLIANCE + NOT EMPTY)
-
-// VARIABLES
+// ---------------------------
+// For explanations see part 2.1 about the first name, its the same
+// EXCEPT the different REGEX for email validation 
 
 var emailValide = null;
-var emailInput = document.getElementById("email");
-var emailError = document.getElementById("emailError");
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("emailError");
 emailError.style.display = "none";
-
-// EMAIL ERRORS (Issue #3)
 
 function emailValid() {
   emailValide = true;
   emailError.style.display = "none";
   emailInput.classList.remove("redborder");
-  console.log("email valid");
 }
 
 function emailInvalid() {
   emailValide = false;
   emailError.style.display = "block";
   emailInput.classList.add("redborder");
-  console.log("email not valid");
 }
-
-// EMAIL VALUES CHECK
 
 function checkemailEmpty() {
   if (emailInput.value.length == 0) {
@@ -212,41 +234,37 @@ function checkemailValue() {
   });
 }
 
-// EMAIL VALIDATION
-
 function checkemailValidation() {
   checkemailEmpty();
   checkemailValue();
 }
 
-// VERIFY BIRTHDATE -- won't do not required in specs
+// ---------------------------
+// VERIFY BIRTHDATE -- won't do not required in specs see issue #2
+// ---------------------------
 
+// ---------------------------
 // 2.4 VERIFY QUANTITY OF TOURNAMENTS COMPLETED BY USER (COMPLIANCE + NOT EMPTY)
-
-// VARIABLES
+// ---------------------------
+// For explanations see part 2.1 about the first name, its the same
+// EXCEPT the REGEX for numbers validation 
 
 var quantityValide = null;
-var quantityInput = document.getElementById("quantity");
-var quantityError = document.getElementById("quantityError");
+const quantityInput = document.getElementById("quantity");
+const quantityError = document.getElementById("quantityError");
 quantityError.style.display = "none";
-
-// QUANTITY ERRORS (Issue #3)
 
 function quantityValid() {
   quantityValide = true;
   quantityError.style.display = "none";
   quantityInput.classList.remove("redborder");
-  console.log("quantity valid");
 }
 
 function quantityInvalid() {
   quantityValide = false;
   quantityError.style.display = "block";
   quantityInput.classList.add("redborder");
-  console.log("quantity not valid");
 }
-
-// QUANTITY VALUES CHECK
 
 function checkquantityEmpty() {
   if (quantityInput.value.length == 0) {
@@ -265,39 +283,35 @@ function checkquantityValue() {
   });
 }
 
-// QUANTITY VALIDATION
-
 function checkquantityValidation() {
   checkquantityEmpty();
   checkquantityValue();
 }
 
+// ---------------------------
 // 2.5 VERIFY LOCATION OF TOURNAMENT WANTED BY USER (COMPLIANCE + NOT EMPTY)
-
-// VARIABLES
+// ---------------------------
+// For explanations see part 2.1 about the first name, its the same
+// EXCEPT for the use of document.forms["reserve"].location.value to check all the radio buttons value at once
+// No need for a checklocationValue function, because if the value is not null, the conditions are valid
 
 var locationValide = null;
-var locationInput = document.getElementById("location");
-var locationError = document.getElementById("locationError");
+const locationInput = document.getElementById("location");
+const locationError = document.getElementById("locationError");
 locationError.style.display = "none";
-
-// LOCATION ERRORS (Issue #3)
 
 function locationValid() {
   locationValide = true;
   locationError.style.display = "none";
-  console.log("location valid");
 }
 
 function locationInvalid() {
   locationValide = false;
   locationError.style.display = "block";
-  console.log("location not valid");
 }
 
-// LOCATION VALUES CHECK
-
 function checklocationEmpty() {
+  // verify if there is a checked field in the reserve form
   if (document.forms["reserve"].location.value.length == 0) {
     locationInvalid();
   } else {
@@ -305,45 +319,36 @@ function checklocationEmpty() {
   }
 }
 
-function checklocationValue() {
-  console.log(document.forms["reserve"].location.value);
-}
-
-// LOCATION VALIDATION
-
 function checklocationValidation() {
   checklocationEmpty();
-  checklocationValue();
 }
 
+// ---------------------------
 // 2.6 VERIFY IF CHECKBOX1 FOR TERMS AND CONDITIONS IS CHECKED (COMPLIANCE + NOT EMPTY)
-
-// VARIABLES
+// ---------------------------
+// For explanations see part 2.1 about the first name, its the same
+// EXCEPT for the use of checkbox1Input.checked to verify if the field is checked
+// No need for a checkcheckbox1Value function, because if the value is checked, the conditions are valid
 
 var checkbox1Valide = null;
-var checkbox1Input = document.getElementById("checkbox1");
-var checkbox1Error = document.getElementById("checkbox1Error");
+const checkbox1Input = document.getElementById("checkbox1");
+const checkbox1Error = document.getElementById("checkbox1Error");
 checkbox1Error.style.display = "none";
-
-// CHECKBOX1 ERRORS (Issue #3)
 
 function checkbox1Valid() {
   checkbox1Valide = true;
   checkbox1Error.style.display = "none";
   checkbox1Input.classList.remove("redborder");
-  console.log("checkbox1 valid");
 }
 
 function checkbox1Invalid() {
   checkbox1Valide = false;
   checkbox1Error.style.display = "block";
   checkbox1Input.classList.add("redborder");
-  console.log("checkbox1 not valid");
 }
 
-// CHECKBOX1 VALUES CHECK
-
 function checkcheckbox1Empty() {
+    // verify if the checkbox is checked
   if (checkbox1Input.checked) {
     checkbox1Valid();
   } else {
@@ -351,49 +356,41 @@ function checkcheckbox1Empty() {
   }
 }
 
-function checkcheckbox1Value() {
-  console.log(checkbox1Input.checked);
-}
-
-// CHECKBOX1 VALIDATION
-
 function checkcheckbox1Validation() {
   checkcheckbox1Empty();
-  checkcheckbox1Value();
 }
 
+// ---------------------------
 // 2.7 VERIFY IF ALL CONDITIONS ARE MET AT FORM SUBMISSION (COMPLIANCE + NOT EMPTY)
-
-// VARIABLES
-
+// ---------------------------
 var formValide = null;
-var formError = document.getElementById("formError");
+const formError = document.getElementById("formError");
 const registerForm = document.getElementById("registerForm");
+// Prevent form from being submitted 
 registerForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log("form default prevented");
 });
-
 formError.style.display = "none";
 
 // FORM ERRORS (Issue #3)
-
+// Called if the conditions to validate the whole form are met
 function formValid() {
   formValide = true;
   formError.style.display = "none";
-  console.log("form valid");
+  // If the form is validated, close it 
   closeModal1();
+  // If the form is validated, show the thank you page
   launchthankYou();
 }
 
 function formInvalid() {
   formValide = false;
   formError.style.display = "block";
-  console.log("form not valid");
 }
 
 // FORM VALUES CHECK
-
+// Used to update the results of all fields
+// Useful in case the user clicks on "c'est parti" without filling any value in the form, to display an error
 function checkformCompletion() {
   checkfirstValidation();
   checklastValidation();
@@ -403,6 +400,7 @@ function checkformCompletion() {
   checkcheckbox1Validation();
 }
 
+// Used to make the form valid if all fields have a correct value
 function formvalueCheck() {
   if (
     firstValide &&
@@ -419,38 +417,32 @@ function formvalueCheck() {
 }
 
 // FORM VALIDATION
+// Called when the form is submitted (onsubmit in <form> in the HTML)
+// This means when clicking on the submit input or when using the keyboard
 function checkformValidation() {
   checkformCompletion();
   formvalueCheck();
 }
 
+// ---------------------------
 // ISSUE 4 - DISPLAY VALIDATION POPUP
+// ---------------------------
 
+// ---------------------------
 // 4.1 DISPLAY POPUP
-
+// ---------------------------
+// select the thank you popup to be able to modify it 
 const thankYou = document.getElementById("thankYou");
 
+// displays the thank you popup, called when the form is validated
 function launchthankYou() {
   thankYou.style.display = "block";
 }
 
+// ---------------------------
 // 4.2 CLOSE POPUP
-
+// ---------------------------
+// displays the thank you popup, called via the HTML when the users clicks the exit cross or confirm button
 function thankYouClose() {
   thankYou.style.display = "none";
-}
-
-// ISSUE 5 - TESTING
-
-// 5.1 IMPLEMENT TESTING SCENARIOS FOR FORM
-
-// 5.2 FIX WRONG CODE
-
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
 }
