@@ -31,17 +31,17 @@ const formData = document.querySelectorAll(".formData");
 // SUB FUNCTIONS THAT ARE USED BY THE MAIN FUNCTION BELOW TO OPEN THE MODAL 
 
 // Select the modal in the DOM to be able to access it for modification
-const modalbg = document.querySelector(".bground");
+const modal1 = document.querySelector(".bground");
 
 // Display the modal form block
 function displayModalForm1() {
-  modalbg.style.display = "block";
+  modal1.style.display = "block";
 }
-// Resets form in case values were previously entered
+// Reset form in case values were previously entered
 function resetFormInputs() {
   document.forms["reserve"].reset();
 }
-// Resets error messages in case values were previously entered
+// Reset error messages in case values were previously entered
 function resetErrorMessages() {
   firstError.style.display = "none";
   lastError.style.display = "none";
@@ -50,7 +50,7 @@ function resetErrorMessages() {
   locationError.style.display = "none";
   checkbox1Error.style.display = "none";
 }
-// Resets error borders on fields in case values were previously entered
+// Reset error borders on fields in case values were previously entered
 function resetErrorBorders() {
   firstInput.classList.remove("redborder");
   lastInput.classList.remove("redborder");
@@ -67,6 +67,7 @@ function launchModal() {
   resetFormInputs();
   resetErrorMessages();
   resetErrorBorders();
+  console.log("Show modal 1");
 }
 
 // ---------------------------
@@ -76,7 +77,8 @@ function launchModal() {
 // called on click on popup cross button in HTML
 // called when form is validated
 function closeModal1() {
-  modalbg.style.display = "none";
+  modal1.style.display = "none";
+  console.log("Close modal 1");
 }
 
 // ---------------------------
@@ -90,7 +92,7 @@ function closeModal1() {
 // SETUP
 // By default the answer value is not valid 
 var firstValide = null;
-// Identifying DOM elements for modification when needed 
+// Select DOM elements for modification when needed 
 const firstInput = document.getElementById("first");
 const firstError = document.getElementById("firstError");
 // Hide error messages by default 
@@ -98,8 +100,8 @@ firstError.style.display = "none";
 
 // FIRST NAME ERRORS (Issue #3)
 // Function that will be called when the validation criteria are met
-// Sets the answer value to valid 
-// Hides error messages and formatting if there are any
+// Set the answer value to valid 
+// Hide error messages and formatting if there are any
 function firstValid() {
   firstValide = true;
   firstError.style.display = "none";
@@ -107,7 +109,7 @@ function firstValid() {
 }
 
 // Function that will be called when the validation criteria are NOT met
-// Sets the answer value to NOT valid 
+// Set the answer value to NOT valid 
 // Show error messages and formatting if needed
 function firstInvalid() {
   firstValide = false;
@@ -116,8 +118,8 @@ function firstInvalid() {
 }
 
 // FIRST NAME VALUES CHECK
-// Verifies if the field name is empty to make the answer invalid
-// Used in the global form check function 
+// Verifiy if the field name is empty to make the answer invalid
+// Called in the global form check function 
 function checkfirstEmpty() {
   if (firstInput.value.length == 0) {
     firstInvalid();
@@ -125,11 +127,11 @@ function checkfirstEmpty() {
 }
 
 // When the field has a value, verifies if it matches the criteria at each new input 
-// Used in the global form check function 
+// Called in the global form check function 
 function checkfirstValue() {
   firstInput.addEventListener("input", function (e) {
     var value = e.target.value;
-    // the regex below verifies that there is only text and at least 2 characters + includes french special characters
+    // The regex below verifies that there is only text and at least 2 characters + includes french special characters
     if (value.match(/^[A-Za-z-éèêàâäiîçô]{2,}$/)) {
       firstValid();
     } else {
@@ -377,19 +379,29 @@ formError.style.display = "none";
 function formValid() {
   formValide = true;
   formError.style.display = "none";
+  console.log("Form is valid!");
   // If the form is validated, close it 
   closeModal1();
   // If the form is validated, show the thank you page
-  launchthankYou();
+  launchModal2();
 }
 
 function formInvalid() {
   formValide = false;
   formError.style.display = "block";
+  // Sending a log if the form is not valid to find which elements are false
+  console.log("Form not valid", 
+              ": First Name", firstValide, 
+              ", Last Name", lastValide,
+              ", Email", emailValide,
+              ", Quantity", quantityValide,
+              ", Location", locationValide,
+              ", Checkbox1", checkbox1Valide
+              );
 }
 
 // FORM VALUES CHECK
-// Used to update the results of all fields
+// Called to update the results of all fields
 // Useful in case the user clicks on "c'est parti" without filling any value in the form, to display an error
 function checkformCompletion() {
   checkfirstValidation();
@@ -400,7 +412,7 @@ function checkformCompletion() {
   checkcheckbox1Validation();
 }
 
-// Used to make the form valid if all fields have a correct value
+// Called to make the form valid if all fields have a correct value
 function formvalueCheck() {
   if (
     firstValide &&
@@ -431,18 +443,20 @@ function checkformValidation() {
 // ---------------------------
 // 4.1 DISPLAY POPUP
 // ---------------------------
-// select the thank you popup to be able to modify it 
-const thankYou = document.getElementById("thankYou");
+// Select the thank you popup to be able to modify it 
+const modal2 = document.getElementById("thankYou");
 
-// displays the thank you popup, called when the form is validated
-function launchthankYou() {
-  thankYou.style.display = "block";
+// Display the thank you popup, called when the form is validated
+function launchModal2() {
+  modal2.style.display = "block";
+  console.log("Show modal 2");
 }
 
 // ---------------------------
 // 4.2 CLOSE POPUP
 // ---------------------------
-// displays the thank you popup, called via the HTML when the users clicks the exit cross or confirm button
-function thankYouClose() {
-  thankYou.style.display = "none";
+// Display the thank you popup, called via the HTML when the users clicks the exit cross or confirm button
+function closeModal2() {
+  modal2.style.display = "none";
+  console.log("Close modal 2");
 }
