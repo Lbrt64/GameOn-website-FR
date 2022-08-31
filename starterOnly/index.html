@@ -49,20 +49,20 @@
 				<div class="content">
 					<span class="close" id="form-close" onclick="closeModal1()"></span>
 					<div class="modal-body">
-						<form name="reserve" action="index.html" method="get">
+						<form name="reserve" action="index.html" method="get" id="registerForm" onsubmit="checkformValidation(event)">
 							<div class="formData">
 								<label for="first">Prénom</label><br />
-								<input class="text-control" type="text" id="first" name="first" minlength="2" oninput="checkfirstValidation()" onfocusout="checkfirstValidation()"/><br />
-                <div class="erreur" id="firstError">Veuillez entrer deux caractères ou plus pour le champ du prénom</div>
+								<input class="text-control" type="text" id="first" name="first" minlength="2" onclick="checkfirstValidation()"/><br />
+                				<div class="erreur" id="firstError">Veuillez entrer deux caractères ou plus pour le champ du prénom</div>
 							</div>
 							<div class="formData">
 								<label for="last">Nom</label><br />
-								<input class="text-control" type="text" id="last" name="last" minlength="2" oninput="checklastValidation()" onfocusout="checklastValidation()"/><br />
+								<input class="text-control" type="text" id="last" name="last" minlength="2" onclick="checklastValidation()"/><br />
 								<div class="erreur" id="lastError">Veuillez entrer deux caractères ou plus pour le champ du nom</div>							
 							</div>
 							<div class="formData">
 								<label for="email">E-mail</label><br />
-								<input class="text-control" type="email" id="email" name="email" oninput="checkemailValidation()" onfocusout="checkemailValidation()"/><br />
+								<input class="text-control" type="email" id="email" name="email" onclick="checkemailValidation()" onfocusout="checkemailValidation()"/><br />
 								<div class="erreur" id="emailError">Veuillez entrer un email valide</div>							
 							</div>
 							<div class="formData">
@@ -72,39 +72,39 @@
 							</div>
 							<div class="formData">
 								<label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br />
-								<input type="number" step="1" class="text-control" id="quantity" name="quantity" min="0" max="99" oninput="checkquantityValidation()" onfocusout="checkquantityValidation()"/>
+								<input type="number" step="1" class="text-control" id="quantity" name="quantity" min="0" max="99" onclick="checkquantityValidation()" onfocusout="checkquantityValidation()"/>
 								<div class="erreur" id="quantityError">Veuillez entrer une quantité valide</div>							
 							</div>
 
-							<div class="formData" id="radioSelect">
-								<span class="text-label">A quel tournoi souhaitez-vous participer cette année ?</span><br />
-								<input class="checkbox-input" type="radio" name="location" value="New York" id="location1" /> <label class="checkbox-label" for="location1"><span class="checkbox-icon"></span>New York</label>
-								<input class="checkbox-input" type="radio" name="location" value="San Francisco" id="location2" /> <label class="checkbox-label" for="location2"><span class="checkbox-icon"></span>San Francisco</label>
-								<input class="checkbox-input" type="radio" name="location" value="Seattle" id="location3" /> <label class="checkbox-label" for="location3"><span class="checkbox-icon"></span>Seattle</label>
-								<input class="checkbox-input" type="radio" name="location" value="Chicago" id="location4" /> <label class="checkbox-label" for="location4"><span class="checkbox-icon"></span>Chicago</label>
-								<input class="checkbox-input" type="radio" name="location" value="Boston" id="location5" /> <label class="checkbox-label" for="location5"><span class="checkbox-icon"></span>Boston</label>
-								<input class="checkbox-input" type="radio" name="location" value="Portland" id="location6" /> <label class="checkbox-label" for="location6"><span class="checkbox-icon"></span>Portland</label>
-                <div class="erreur" id="locationError"></div>
+							<div class="formData" id="location">
+								<label for="location">A quel tournoi souhaitez-vous participer cette année ?</label><br />
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="New York" id="location1" /> <label class="checkbox-label" for="location1" "><span class="checkbox-icon"></span>New York</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="San Francisco" id="location2" /> <label class="checkbox-label" for="location2"><span class="checkbox-icon""></span>San Francisco</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Seattle" id="location3" /> <label class="checkbox-label" for="location3"><span class="checkbox-icon" "></span>Seattle</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Chicago" id="location4" /> <label class="checkbox-label" for="location4"><span class="checkbox-icon" "></span>Chicago</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Boston" id="location5" /> <label class="checkbox-label" for="location5"><span class="checkbox-icon" "></span>Boston</label>
+								<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Portland" id="location6" /> <label class="checkbox-label" for="location6"><span class="checkbox-icon" "></span>Portland</label>
+                				<div class="erreur" id="locationError">Veuillez sélectionner une option</div>
 							</div>
 
 							<div class="formData">
-								<input class="checkbox-input" type="checkbox" id="checkbox1" name="checkbox1" checked />
-								<label class="checkbox2-label" for="checkbox1" >
-									<span class="checkbox-icon"></span>
-									J'ai lu et accepté les conditions d'utilisation.
-								</label>
-                <div class="erreur" id="checkbox1Error"></div>
+									<input class="checkbox-input" type="checkbox" id="checkbox1" name="checkbox1" checked onclick="checkcheckbox1Validation()" />
+									<label class="checkbox2-label" for="checkbox1">
+										<span class="checkbox-icon"></span>
+										J'ai lu et accepté les conditions d'utilisation.
+									</label>
+									<div class="erreur" id="checkbox1Error">Veuillez accepter les conditions pour continuer</div>
 								<br />
-								<input class="checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" />
-								<label class="checkbox2-label" for="checkbox2">
-									<span class="checkbox-icon"></span>
-									Je souhaite être prévenu des prochains évènements.
-								</label>
+									<input class="checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" />
+									<label class="checkbox2-label" for="checkbox2">
+										<span class="checkbox-icon"></span>
+										Je souhaite être prévenu des prochains évènements.
+									</label>
 								<br />
 							</div>
 
-							<input class="btn-submit button" type="submit" value="C'est parti" id="formsend" />
-              <div class="erreur" id="submitError"></div>
+							<input class="btn-submit button" type="submit" value="C'est parti" id="formSend"/>
+              				<div class="erreur" id="formError">Veuillez compléter tous les champs requis et réessayer</div>
 						</form>
 					</div>
 				</div>

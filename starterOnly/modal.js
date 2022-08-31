@@ -1,145 +1,3 @@
-
-
-
-
-
-// MANAGEMENT OF ISSUE #1
-
-
-
-
-// MANAGEMENT OF ISSUE #2
-
-// vérifier qu'un bouton radio est sélectionne
-
-// définition des variables pour chaque box radio
-var locationValue1 = false;
-var locationValue2 = false;
-var locationValue3 = false;
-var locationValue4 = false;
-var locationValue5 = false;
-var locationValue6 = false;
-
-document // document.forms["reserve"].location.value  -- syntaxe pour récuper dans formulaire valeur cochée
-  .getElementById("radioSelect")
-  .addEventListener("input", function() {
-    // vérifier un par un si les boutons sont sélectionnés
-    if (document.getElementById('location1').checked) {
-      locationValue1 = true;
-    }  
-    if (document.getElementById('location2').checked) {
-      locationValue2 = true;
-    }  
-    if (document.getElementById('location3').checked) {
-      locationValue3 = true;
-    }      
-    if (document.getElementById('location4').checked) {
-      locationValue4 = true;
-    }  
-    if (document.getElementById('location5').checked) {
-      locationValue5 = true;
-    }  
-    if (document.getElementById('location6').checked) {
-      locationValue6 = true;
-    }
-    // si un bouton est sélectionné, on considère cette partie comme valide
-    if (locationValue1 || locationValue2 || locationValue3 || locationValue4 || locationValue5 || locationValue6) {
-      locationValide = true;
-      console.log("Location Sélectionnée")
-      locationError.innerHTML = "";
-      locationError.classList.remove("texteErreur")
-    } else {
-      locationValide = false;
-      console.log("Pas de location selectionnée")
-      locationError.innerHTML = "<p>Veuillez choisir un lieu</p>";
-      locationError.classList.add("texteErreur")
-    }
-});
-
-
-// validation des conditions d'utilisation
-const checkbox1Value = document.getElementById("checkbox1")
-checkbox1Value.addEventListener("change", function() {
-    if (document.getElementById('checkbox1').checked) {
-      checkbox1Valide = true;
-      checkbox1Error.innerHTML = "";
-      checkbox1Error.classList.remove("texteErreur")
-      console.log("Condition d'utilisation validées")
-      checkbox1Value.classList.remove("redborder");
-    } else {
-      checkbox1Valide = false;
-      checkbox1Error.innerHTML = "<p>Veuillez accepter les conditions</p>";
-      checkbox1Error.classList.add("texteErreur")
-      checkbox1Value.classList.add("redborder");
-      console.log("Merci de valider les conditions d'utilisation")
-    }
-});
-
-// fonction de vérification des champs vides au clic 
-function checkEmpty () {
-    if (firstValide == false) {
-      firstError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du prénom</p>";
-      firstError.classList.add("texteErreur")
-      console.log("Prenom non valide");
-      firstValue.classList.add("redborder");
-    }
-    if (lastValide == false) {
-      lastValue.classList.add("redborder");
-      lastError.innerHTML = "<p>Veuillez entrer deux caractères ou plus pour le champ du nom</p>";
-      lastError.classList.add("texteErreur")
-      console.log("Nom non valide");
-    }
-    if (emailValide == false) {
-      emailValue.classList.add("redborder");
-      emailError.innerHTML = "<p>Veuillez entrer un email valide</p>";
-      emailError.classList.add("texteErreur")
-      console.log("email non valide");
-    }
-    if (quantityValide == false) // parseInt("12").toString() == "12" exercice, appliquer à l'input, parseFloat pour décimale
-    {
-      quantityValue.classList.add("redborder");
-      console.log("Nombre de concours non Valide");
-      quantityError.innerHTML = "<p>Veuillez remplir ce champ avec un nombre entre 0 et 99</p>";
-      quantityError.classList.add("texteErreur")
-    }
-    if (locationValide == false) {
-      console.log("Pas de location selectionnée")
-      locationError.innerHTML = "<p>Veuillez choisir un lieu</p>";
-      locationError.classList.add("texteErreur")
-    }
-    if (checkbox1Valide == false) {
-      checkbox1Error.innerHTML = "<p>Veuillez accepter les conditions</p>";
-      checkbox1Error.classList.add("texteErreur")
-      checkbox1Value.classList.add("redborder");
-      console.log("Merci de valider les conditions d'utilisation")
-    }
-  };
-
-
-// vérification de la validité du formulaire au clic sur le bouton
-// fonction de validation des champs -- puis la rappeler au click 
-let formulaireValide = false;
-const boutonSoumettre = document.getElementById('formsend');
-boutonSoumettre.addEventListener("click", function(event) // sur submit du formulaire pour éviter bug entrée
-{
-    checkEmpty ();
-    event.preventDefault();  
-    if (firstValide && lastValide && emailValide && quantityValide && locationValide && checkbox1Valide) {
-      formulaireValide = true;
-      console.log("formulaire validé:", formulaireValide);
-      submitError.innerHTML = "";
-      submitError.classList.remove("texteErreur--centered")
-      closeModal();
-      launchthankYou();
-    } else {
-      formulaireValide = false;
-      console.log("formulaire validé:", formulaireValide);
-      submitError.innerHTML = "<p>Veuillez compléter tous les champs requis pour valider le formulaire</p>";
-      submitError.classList.add("texteErreur--centered")
-    }
-}
-)
-
 // display Thank you page
 const thankYou = document.getElementById("thankYou")
 function launchthankYou() {
@@ -175,6 +33,7 @@ const formData = document.querySelectorAll(".formData");
 // ISSUE 1 - OPEN AND CLOSE MODAL
 
 const modalbg = document.querySelector(".bground");
+const registerForm = document.getElementById("registerForm")
 
 // 1.1 OPEN MODAL 
 function displayModalForm1() {
@@ -230,7 +89,7 @@ function closeModal1 () {
 
 // VARIABLES
 
-var firstValide = false;
+var firstValide = null;
 var firstInput = document.getElementById("first")
 var firstError = document.getElementById("firstError");
 firstError.style.display = "none";
@@ -262,7 +121,7 @@ function checkfirstEmpty() {
 function checkfirstValue() {
   firstInput.addEventListener("input", function(e) {
     var value = e.target.value;
-    if (value.match(/[A-Za-z]{2,}$/)) {
+    if (value.match(/^[A-Za-z]{2,}$/)) {
       firstValid()
     } else {
       firstInvalid();
@@ -281,7 +140,7 @@ function checkfirstValidation() {
 
 // VARIABLES
 
-var lastValide = false;
+var lastValide = null;
 var lastInput = document.getElementById("last")
 var lastError = document.getElementById("lastError");
 lastError.style.display = "none";
@@ -313,7 +172,7 @@ function checklastEmpty() {
 function checklastValue() {
   lastInput.addEventListener("input", function(e) {
     var value = e.target.value;
-    if (value.match(/[A-Za-z]{2,}$/)) {
+    if (value.match(/^[A-Za-z]{2,}/)) {
       lastValid()
     } else {
       lastInvalid();
@@ -333,7 +192,7 @@ function checklastValidation() {
 
 // VARIABLES
 
-var emailValide = false;
+var emailValide = null;
 var emailInput = document.getElementById("email")
 var emailError = document.getElementById("emailError");
 emailError.style.display = "none";
@@ -386,12 +245,12 @@ function checkemailValidation() {
 
 // VARIABLES
 
-var quantityValide = false;
+var quantityValide = null;
 var quantityInput = document.getElementById("quantity")
 var quantityError = document.getElementById("quantityError");
 quantityError.style.display = "none";
 
-// quantity ERRORS (Issue #3)
+// QUANTITY ERRORS (Issue #3)
 
 function quantityValid() {
   quantityValide = true;
@@ -407,7 +266,7 @@ function quantityInvalid() {
   console.log("quantity not valid");
 }
 
-// quantity VALUES CHECK
+// QUANTITY VALUES CHECK
 
 function checkquantityEmpty() {
   if (quantityInput.value.length == 0) { 
@@ -418,7 +277,7 @@ function checkquantityEmpty() {
 function checkquantityValue() {
   quantityInput.addEventListener("input", function(e) {
     var value = e.target.value;
-    if (value.match(/^\d+$/)) {
+    if (value.match(/(^\d{1,10}$)/g)) {
       quantityValid()
     } else {
       quantityInvalid();
@@ -426,52 +285,155 @@ function checkquantityValue() {
   });
 }
 
-// quantity VALIDATION 
+// QUANTITY VALIDATION 
 
 function checkquantityValidation() {
   checkquantityEmpty();
   checkquantityValue();
 };
 
-
-
 // 2.5 VERIFY LOCATION OF TOURNAMENT WANTED BY USER (COMPLIANCE + NOT EMPTY)
+
+// VARIABLES
+
+var locationValide = null;
+var locationInput = document.getElementById("location")
+var locationError = document.getElementById("locationError");
+locationError.style.display = "none";
+
+// LOCATION ERRORS (Issue #3)
+
+function locationValid() {
+  locationValide = true;
+  locationError.style.display = "none";
+  console.log("location valid");
+}
+
+function locationInvalid() {
+  locationValide = false;
+  locationError.style.display = "block";
+  console.log("location not valid");
+}
+
+// LOCATION VALUES CHECK
+
+function checklocationEmpty() {
+  if (document.forms["reserve"].location.value.length  == 0) { 
+    locationInvalid() 
+  } else {
+    locationValid();
+  }
+}
+
+function checklocationValue() {
+  console.log(document.forms["reserve"].location.value);
+}
+
+// LOCATION VALIDATION 
+
+function checklocationValidation() {
+  checklocationEmpty();
+  checklocationValue();
+};
 
 // 2.6 VERIFY IF CHECKBOX1 FOR TERMS AND CONDITIONS IS CHECKED (COMPLIANCE + NOT EMPTY)
 
+// VARIABLES
+
+var checkbox1Valide = null;
+var checkbox1Input = document.getElementById("checkbox1")
+var checkbox1Error = document.getElementById("checkbox1Error");
+checkbox1Error.style.display = "none";
+
+// CHECKBOX1 ERRORS (Issue #3)
+
+function checkbox1Valid() {
+  checkbox1Valide = true;
+  checkbox1Error.style.display = "none";
+  checkbox1Input.classList.remove("redborder");
+  console.log("checkbox1 valid");
+}
+
+function checkbox1Invalid() {
+  checkbox1Valide = false;
+  checkbox1Error.style.display = "block";
+  checkbox1Input.classList.add("redborder");
+  console.log("checkbox1 not valid");
+}
+
+// CHECKBOX1 VALUES CHECK
+
+function checkcheckbox1Empty() {
+  if (checkbox1Input.checked) { 
+    checkbox1Valid();
+  } else {
+    checkbox1Invalid();
+  }
+}
+
+function checkcheckbox1Value() {
+  console.log(checkbox1Input.checked);
+}
+
+// CHECKBOX1 VALIDATION 
+
+function checkcheckbox1Validation() {
+  checkcheckbox1Empty();
+  checkcheckbox1Value();
+};
+
 // 2.7 VERIFY IF ALL CONDITIONS ARE MET AT FORM SUBMISSION (COMPLIANCE + NOT EMPTY)
 
+// VARIABLES
 
+var formValide = null;
+var formError = document.getElementById("formError");
+formError.style.display = "none";
 
+// FORM ERRORS (Issue #3)
 
+function formValid() {
+  formValide = true;
+  formError.style.display = "none";
+  console.log("form valid");
+  closeModal1();
+  launchthankYou();
+}
 
+function formInvalid() {
+  formValide = false;
+  formError.style.display = "block";
+  console.log("form not valid");
+}
 
+// FORM VALUES CHECK
 
+function checkformCompletion() {
+  checkfirstValidation();
+  checklastValidation();
+  checkemailValidation();
+  checkquantityValidation();
+  checklocationValidation();
+  checkcheckbox1Validation();
+};
 
+function formvalueCheck() {
+  registerForm.addEventListener("submit", function() {
+    if (firstValide && lastValide && emailValide && quantityValide && locationValide && checkbox1Valide) {
+      formValid();
+    } else {
+      formInvalid();
+    }
+  });
+}
 
+// FORM VALIDATION
 
-
-
-
-
-
-// ISSUE 3 - DISPLAY ERROR MESSAGES FOR INCORRECT VALUES
-
-// 2.1 DISPLAY ERROR MESSAGES FOR FIRST NAME (COMPLIANCE + NOT EMPTY)
-
-// 2.2 DISPLAY ERROR MESSAGES FOR LAST NAME (COMPLIANCE + NOT EMPTY)
-
-// 2.3 DISPLAY ERROR MESSAGES FOR EMAIL (COMPLIANCE + NOT EMPTY)
-
-// DISPLAY ERROR MESSAGES FOR BIRTHDATE -- won't do not required in specs 
-
-// 2.4 DISPLAY ERROR MESSAGES FOR QUANTITY OF TOURNAMENTS COMPLETED BY USER (COMPLIANCE + NOT EMPTY)
-
-// 2.5 DISPLAY ERROR MESSAGES FOR LOCATION OF TOURNAMENT WANTED BY USER (COMPLIANCE + NOT EMPTY)
-
-// 2.6 DISPLAY ERROR MESSAGES FOR FOR TERMS AND CONDITIONS (COMPLIANCE + NOT EMPTY)
-
-// 2.7 DISPLAY ERROR MESSAGES FOR FORM SUBMISSION (COMPLIANCE)
+function checkformValidation(e) {
+  e.preventDefault();
+  checkformCompletion();
+  formvalueCheck();
+}
 
 
 
