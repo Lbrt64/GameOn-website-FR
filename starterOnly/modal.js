@@ -179,7 +179,7 @@ function checklastEmpty() {
 function checklastValue() {
   lastInput.addEventListener("input", function (e) {
     var value = e.target.value;
-    if (value.match(/^[A-Za-z-éèêàâäiîçô]{2,}/)) {
+    if (value.match(/^[A-Za-z-éèêàâäiîçô]{2,}$/)) {
       lastValid();
     } else {
       lastInvalid();
