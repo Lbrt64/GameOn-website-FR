@@ -73,7 +73,7 @@
 						</div>
 						<div class="formData">
 							<label class="labelDescription" for="birthdate">Date de naissance</label>
-							<input class="text-control" type="date" id="birthdate" name="birthdate" />
+							<input class="text-control" type="text" id="birthdate" name="birthdate" onfocusin="(this.type='date')" onfocusout="(this.type='text')" />
 							<div class="erreur" id="birthdateError"></div>
 						</div>
 						<div class="formData">
@@ -82,14 +82,16 @@
 							<div class="erreur" id="quantityError">Veuillez entrer une quantité valide</div>							
 						</div>
 
-						<div class="formData" id="location">
+						<div class="formData radioQuestion" id="location">
 							<label class="labelDescription">A quel tournoi souhaitez-vous participer cette année ?</label>
-							<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="New York" id="location1" /> <label class="checkbox-label" for="location1"><span class="checkbox-icon"></span>New York</label>
-							<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="San Francisco" id="location2" /> <label class="checkbox-label" for="location2"><span class="checkbox-icon"></span>San Francisco</label>
-							<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Seattle" id="location3" /> <label class="checkbox-label" for="location3"><span class="checkbox-icon"></span>Seattle</label>
-							<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Chicago" id="location4" /> <label class="checkbox-label" for="location4"><span class="checkbox-icon"></span>Chicago</label>
-							<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Boston" id="location5" /> <label class="checkbox-label" for="location5"><span class="checkbox-icon"></span>Boston</label>
-							<input onclick="checklocationValidation()" class="checkbox-input" type="radio" name="location" value="Portland" id="location6" /> <label class="checkbox-label" for="location6"><span class="checkbox-icon"></span>Portland</label>
+							<div>
+								<input onclick="checklocationValidation()" onchange="borderColorChange()" class="checkbox-input" type="radio" name="location" value="New York" id="location1" /> <label class="checkbox-label" for="location1"><span class="checkbox-icon" id="checkbox-icon-1"></span>New York</label>
+								<input onclick="checklocationValidation()" onchange="borderColorChange()" class="checkbox-input" type="radio" name="location" value="San Francisco" id="location2" /> <label class="checkbox-label" for="location2"><span class="checkbox-icon" id="checkbox-icon-2"></span>San Francisco</label>
+								<input onclick="checklocationValidation()" onchange="borderColorChange()" class="checkbox-input" type="radio" name="location" value="Seattle" id="location3" /> <label class="checkbox-label" for="location3"><span class="checkbox-icon" id="checkbox-icon-3"></span>Seattle</label>
+								<input onclick="checklocationValidation()" onchange="borderColorChange()" class="checkbox-input" type="radio" name="location" value="Chicago" id="location4" /> <label class="checkbox-label" for="location4"><span class="checkbox-icon" id="checkbox-icon-4"></span>Chicago</label>
+								<input onclick="checklocationValidation()" onchange="borderColorChange()" class="checkbox-input" type="radio" name="location" value="Boston" id="location5" /> <label class="checkbox-label" for="location5"><span class="checkbox-icon" id="checkbox-icon-5"></span>Boston</label>
+								<input onclick="checklocationValidation()" onchange="borderColorChange()" class="checkbox-input" type="radio" name="location" value="Portland" id="location6" /> <label class="checkbox-label" for="location6"><span class="checkbox-icon" id="checkbox-icon-6"></span>Portland</label>
+							</div>	
 							<div class="erreur" id="locationError">Veuillez sélectionner une option</div>
 						</div>
 
@@ -98,8 +100,8 @@
 								<label class="checkbox2-label" for="checkbox1">
 									<span class="checkbox-icon"></span>
 									J'ai lu et accepté les conditions d'utilisation.
+									<div class="erreur" id="checkbox1Error">Veuillez accepter les conditions pour continuer</div>
 								</label>
-								<div class="erreur" id="checkbox1Error">Veuillez accepter les conditions pour continuer</div>
 								<input class="checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" />
 								<label class="checkbox2-label" for="checkbox2">
 									<span class="checkbox-icon"></span>
@@ -107,8 +109,10 @@
 								</label>
 						</div>
 
-						<input class="btn-submit button" type="submit" value="C'est parti" id="formSend"/>
-						  <div class="erreur" id="formError">Veuillez compléter tous les champs requis et réessayer</div>
+						<div class="submitContainer">
+							<input class="btn-submit button" type="submit" value="C'est parti" id="formSend"/>
+							<div class="erreurSubmit" id="formError">Veuillez compléter tous les champs requis et réessayer</div>
+						</div>
 					</form>
 				</div>
 			</div>

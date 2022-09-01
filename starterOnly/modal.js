@@ -40,6 +40,7 @@ function displayModalForm1() {
 // Reset form in case values were previously entered
 function resetFormInputs() {
   document.forms["reserve"].reset();
+  document.forms["reserve"].reset();
 }
 // Reset error messages in case values were previously entered
 function resetErrorMessages() {
@@ -459,4 +460,21 @@ function launchModal2() {
 function closeModal2() {
   modal2.style.display = "none";
   console.log("Close modal 2");
+}
+
+// ---------------------------
+// OTHER - Animations
+// ---------------------------
+
+// Change the border color of the radio button input if it is checked
+function borderColorChange() { 
+  for (let i = 1; i < 7; i++) {
+    var icon = document.getElementById("checkbox-icon-"+[i]);
+    var input = document.getElementById("location"+[i]);
+    if (input.checked) {
+      icon.style.border = "2px solid rgb(39, 158, 122)"
+    } else {
+      icon.style.border = "2px solid white"
+    }
+  } 
 }
