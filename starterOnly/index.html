@@ -58,17 +58,17 @@
 					<form name="reserve" action="index.html" method="get" id="registerForm" onsubmit="checkformValidation()">
 						<div class="formData">
 							<label class="labelDescription" for="first">Prénom</label>
-							<input class="text-control" type="text" id="first" name="first" minlength="2" onclick="checkfirstValidation()"/>
+							<input class="text-control" type="text" id="first" name="first" minlength="2" onclick="checkfirstValidation()" onfocus="checkfirstValidation()"/>
 							<div class="erreur" id="firstError">Veuillez entrer deux caractères ou plus pour le champ du prénom</div>
 						</div>
 						<div class="formData">
 							<label class="labelDescription" for="last">Nom</label>
-							<input class="text-control" type="text" id="last" name="last" minlength="2" onclick="checklastValidation()"/>
+							<input class="text-control" type="text" id="last" name="last" minlength="2" onclick="checklastValidation()" onfocus="checklastValidation()"/>
 							<div class="erreur" id="lastError">Veuillez entrer deux caractères ou plus pour le champ du nom</div>							
 						</div>
 						<div class="formData">
 							<label class="labelDescription" for="email">E-mail</label>
-							<input class="text-control" type="email" id="email" name="email" onclick="checkemailValidation()" onfocusout="checkemailValidation()"/>
+							<input class="text-control" type="email" id="email" name="email" onclick="checkemailValidation()"  onfocus="checkemailValidation()" onfocusout="checkemailValidation()"/>
 							<div class="erreur" id="emailError">Veuillez entrer un email valide</div>							
 						</div>
 						<div class="formData">
@@ -78,7 +78,7 @@
 						</div>
 						<div class="formData">
 							<label class="labelDescription" for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label>
-							<input type="number" step="1" class="text-control" id="quantity" name="quantity" min="0" max="99" onclick="checkquantityValidation()" onfocusout="checkquantityValidation()"/>
+							<input type="number" step="1" class="text-control" id="quantity" name="quantity" min="0" max="99" onclick="checkquantityValidation()"  onfocus="checkquantityValidation()" onfocusout="checkquantityValidation()"/>
 							<div class="erreur" id="quantityError">Veuillez entrer une quantité valide</div>							
 						</div>
 
@@ -121,10 +121,8 @@
 		<div class="bground" id="thankYou">
 			<div class="content">
 				<span class="close" id="thankYouCloseCross" onclick="closeModal2()"></span>
-				<div class="modal-body">
 						<div class="thankYouMessage"><p>Merci pour votre inscription!</p></div>
-						<input class="btn-submit button" type="submit" value="Fermer" id="thankYouCloseBtn" onclick="closeModal2()" />
-				</div>
+						<input class="btn-submit button btn-thankYou" type="submit" value="Fermer" id="thankYouCloseBtn" onclick="closeModal2()" />
 			</div>
 		</div>
 

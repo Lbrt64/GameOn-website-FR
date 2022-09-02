@@ -68,6 +68,7 @@ function launchModal() {
   resetFormInputs();
   resetErrorMessages();
   resetErrorBorders();
+  borderColorChange();
   console.log("Show modal 1");
 }
 
