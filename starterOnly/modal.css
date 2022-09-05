@@ -89,6 +89,54 @@ header {
     min-width: 540px;
 }
 
+.desktop-navbar {
+  display: block;
+}
+
+.mobile-navbar {
+  display: none;
+}
+
+
+.hamburger {
+    position: relative;
+    border: none;
+    background: white;
+    cursor: pointer;
+    color: #fe142f ;
+    z-index: 50;
+    font-size: 24px;
+    display: none;
+}  
+
+#closeIcon {
+  display: none;
+}
+
+.menu {
+  position: fixed;
+  transform: translateY(-100%);
+  transition: transform 0.2s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  background: white;
+  color: black;
+  list-style: none;
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.showMenu {
+  transform: translateY(0);
+}
+
+
 header a {
   color: #000000;
   text-align: center;
@@ -120,17 +168,47 @@ header .icon {
   display: none;
 }
 
+
+@media screen and (max-width: 1100px) {
+  .main-navbar.desktop-navbar {
+    display: none;
+  }
+  .main-navbar.mobile-navbar {
+    display: block;
+    min-width: 0px;
+  }
+  .hamburger {
+    display: block;
+  } 
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 90px;
+    margin: auto;
+    margin-top: 14px;
+    width: 94%;
+  }
+  header a {
+    color: #000000;
+    text-align: center;
+    padding: 14px;
+    margin: auto;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: var(--font-default);
+    height: 60px;
+    position: relative;
+    display: block;
+  }
+}
+
 /* responsive */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
   .header-logo {
     max-width: 130px;
-    margin-top: 26px;
-  }
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
   }
 }
 
@@ -176,7 +254,6 @@ header .icon {
 .hero-content {
   color: #fff;
   width: 40%;
-  min-width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -236,7 +313,7 @@ header .icon {
   display: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .hero-section {
     display: flex;
     flex-direction: column;
@@ -256,18 +333,16 @@ header .icon {
     display: none;
   }
   .hero-headline {
-    font-size: 40px;
+    font-size: 36px;
     width:100%;
   }
   .hero-text {
     width: unset;
-    font-size: 3.3vw;
+    font-size: 16px;
     margin: 17px auto 20px auto;
   }
   .hero-img {
     width: 100%;
-    min-height: 330px;
-    min-width: 330px;
     margin: 12px auto;
   }
   .hero-img img {
@@ -281,7 +356,7 @@ header .icon {
     background: #fe142f;
     color: #fff;
     border-radius: 8px;
-    font-size: 3.4vw;
+    font-size: 16px;
     width: 150px;
     height: 35px;
     font-family: var(--font-default);
@@ -311,7 +386,7 @@ header .icon {
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .copyrights {
     margin-top: 20px;
     text-align: center;
@@ -326,7 +401,7 @@ header .icon {
 .bground {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   left: 0;
   top: 0;
   height: 100%;
@@ -575,7 +650,7 @@ input[type=number] {
 @media screen and (max-width: 700px) {
   .content {
     position:absolute;
-    top: 180px;
+    top: 104px;
     left: 0px;
     right: 0px;
     margin: 0 ;
@@ -593,6 +668,7 @@ input[type=number] {
   }
   body {
     max-width: 90%;
+    margin: none;
   }
   .labelDescription {
     margin: 8px 0 8px 0;
@@ -684,7 +760,11 @@ input[type=number] {
 
 @media screen and (max-width: 700px) {
   #thankYou .content {
-    height: 78vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
   }
   .thankYouMessage {
     width: 70%;

@@ -18,14 +18,23 @@
 			<div class="header-logo">
 				<img alt="logo" src="Logo.png" />
 			</div>
-			<nav class="main-navbar">
+			<nav class="main-navbar desktop-navbar">
 				<a href="#" class="active"><span>Détails de l'évènement</span></a>
 				<a href="#"><span>À propos</span></a>
 				<a href="#"><span>Contact</span></a>
 				<a href="#"><span>Évènements passés</span></a>
-				<a href="javascript:void(0);" class="icon" onclick="editNav()">
-					<i class="fa fa-bars"></i>
-				</a>
+			</nav>
+			<nav class="main-navbar mobile-navbar">
+				<ul class="menu">
+					<li><a class="menuItem" href="#">Détails</a></li>
+					<li><a class="menuItem" href="#">A propos</a></li>
+					<li><a class="menuItem" href="#">Contact</a></li>
+					<li><a class="menuItem" href="#">Evènements passés</a></li>
+				</ul>
+				<button class="hamburger">
+					<i class="fa fa-bars" id="menuIcon"></i>
+					<i class="fa fa-close" id="closeIcon"></i>
+				</button>
 			</nav>
 		</header>
 

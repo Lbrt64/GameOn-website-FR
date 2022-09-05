@@ -1,19 +1,18 @@
 //------------------- EXISTING CODE -------------------//
 
 // Management of navigation menu
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+// function editNav() {
+//   var x = document.getElementById("myTopnav");
+//   if (x.className === "topnav") {
+//     x.className += " responsive";
+//   } else {
+//     x.className = "topnav";
+//   }
+// }
 
 // DOM Elements
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-
 
 
 
@@ -39,7 +38,6 @@ function displayModalForm1() {
 }
 // Reset form in case values were previously entered
 
-//chercher le bug
 function resetFormInputs() {
   document.forms["reserve"].reset();
   document.forms["reserve"].reset();
@@ -482,3 +480,31 @@ function borderColorChange() {
     }
   } 
 }
+
+// Mobile menu
+
+const menu = document.querySelector(".menu");
+const menuItems = document.querySelectorAll(".menuItem");
+const hamburger= document.querySelector(".hamburger");
+const closeIcon= document.querySelector("#closeIcon");
+const menuIcon = document.querySelector("#menuIcon");
+
+function toggleMenu() {
+  if (menu.classList.contains("showMenu")) {
+    menu.classList.remove("showMenu");
+    closeIcon.style.display = "none";
+    menuIcon.style.display = "block";
+  } else {
+    menu.classList.add("showMenu");
+    closeIcon.style.display = "block";
+    menuIcon.style.display = "none";
+  }
+}
+
+hamburger.addEventListener("click", toggleMenu);
+
+menuItems.forEach( 
+  function(menuItem) { 
+    menuItem.addEventListener("click", toggleMenu);
+  }
+)
