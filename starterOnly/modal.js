@@ -38,6 +38,8 @@ function displayModalForm1() {
   modal1.style.display = "block";
 }
 // Reset form in case values were previously entered
+
+//chercher le bug
 function resetFormInputs() {
   document.forms["reserve"].reset();
   document.forms["reserve"].reset();
@@ -316,6 +318,7 @@ function locationInvalid() {
 
 function checklocationEmpty() {
   // verify if there is a checked field in the reserve form
+  // checker avec .value == "" 
   if (document.forms["reserve"].location.value.length == 0) {
     locationInvalid();
   } else {

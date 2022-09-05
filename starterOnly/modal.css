@@ -123,6 +123,10 @@ header .icon {
 /* responsive */
 
 @media screen and (max-width: 768px) {
+  .header-logo {
+    max-width: 130px;
+    margin-top: 26px;
+  }
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -242,7 +246,7 @@ header .icon {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0px;
     width: 100%;
   }
   .hero-content::after {
@@ -258,7 +262,7 @@ header .icon {
   .hero-text {
     width: unset;
     font-size: 3.3vw;
-    margin: 17px auto 0px auto;
+    margin: 17px auto 20px auto;
   }
   .hero-img {
     width: 100%;
@@ -277,9 +281,9 @@ header .icon {
     background: #fe142f;
     color: #fff;
     border-radius: 8px;
-    font-size: 2.8vw;
-    width: 140px;
-    height: 30px;
+    font-size: 3.4vw;
+    width: 150px;
+    height: 35px;
     font-family: var(--font-default);
     font-weight: 500;
     padding:0;
@@ -309,8 +313,9 @@ header .icon {
 
 @media screen and (max-width: 800px) {
   .copyrights {
-    margin-top: 50px;
+    margin-top: 20px;
     text-align: center;
+    font-size: 11px;
   }
 }
 
@@ -361,21 +366,21 @@ header .icon {
   cursor: pointer;
   transform: scale(0.7);
 }
-            .close:before,
-            .close:after {
-              position: absolute;
-              left: 15px;
-              content: " ";
-              height: 29px;
-              width: 3px;
-              background-color: #fff;
-            }
-            .close:before {
-              transform: rotate(45deg);
-            }
-            .close:after {
-              transform: rotate(-45deg);
-            }
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 29px;
+  width: 3px;
+  background-color: #fff;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
 
 .modal-body {
   padding: 20px 40px 0px 40px;
@@ -567,6 +572,88 @@ input[type=number] {
   margin-top: 3px;
 }
 
+@media screen and (max-width: 700px) {
+  .content {
+    position:absolute;
+    top: 180px;
+    left: 0px;
+    right: 0px;
+    margin: 0 ;
+    max-width: 100%;
+  }
+  .bground {
+    padding: 0;
+    margin: 0;
+    left: 0px;
+    right: 0px;
+  }
+  .modal-body {
+    padding: 10px 24px 10px 24px;
+    margin:0px;
+  }
+  body {
+    max-width: 90%;
+  }
+  .labelDescription {
+    margin: 8px 0 8px 0;
+    font-size: 13px;
+  }
+  .text-control {
+    font-size: 18px;
+    height: 50px;
+  }
+  .formData {
+    margin-bottom: 4px;
+    margin-top: 4px;
+  }
+  .close {
+    right: 12px;
+    top: 12px;
+  }
+  .checkbox-label .checkbox-icon,
+  .checkbox2-label .checkbox-icon {
+    width: 20px;
+    height: 20px;
+    border: 2px;
+    left: -24px;
+    top: -2px;
+  }
+  .checkbox-label .checkbox-icon::after,
+  .checkbox2-label .checkbox-icon::after {
+    content: "";
+    width: 11px;
+    height: 11px;
+  }
+  .checkbox2-label .checkbox-icon::after {
+    width: 5px;
+    height: 2px;
+    left: 22%;
+    top: 23%;
+  }
+  .checkbox-label,
+  .checkbox2-label {
+    margin-left: 26px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 8px ;
+    font-size: 11px;
+  }
+  .radiosArea {
+    margin-bottom: 14px;
+  }
+  .erreur {
+    margin-top: 1px;
+  }
+  #locationError {
+    margin-top: -11px;
+    height: 10px;
+  }
+  #checkbox1Error {
+    width: 400px;
+    margin-top: -1px;
+  }
+} 
+
 
 /*-------------------------------*/
 /* 3. MODAL - CONFIRM */
@@ -595,3 +682,16 @@ input[type=number] {
   margin-left: 40px;
 }
 
+@media screen and (max-width: 700px) {
+  #thankYou .content {
+    height: 78vh;
+  }
+  .thankYouMessage {
+    width: 70%;
+  }
+  .btn-thankYou {
+    position: absolute;
+    bottom: 10px;
+    margin-left: 0px;
+  }
+}
