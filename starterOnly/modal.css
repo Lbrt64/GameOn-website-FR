@@ -212,7 +212,7 @@ header .icon {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -226,7 +226,7 @@ header .icon {
   }
 }
 
- @media screen and (max-width: 540px) {
+ @media screen and (max-width: 1100px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -313,7 +313,7 @@ header .icon {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
   .hero-section {
     display: flex;
     flex-direction: column;
@@ -339,11 +339,12 @@ header .icon {
   .hero-text {
     width: unset;
     font-size: 16px;
-    margin: 17px auto 20px auto;
+    margin: 17px auto 20px 0px;
   }
   .hero-img {
     width: 100%;
     margin: 12px auto;
+    max-height: 760px;
   }
   .hero-img img {
     border-radius: 10px;
@@ -386,7 +387,7 @@ header .icon {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
   .copyrights {
     margin-top: 20px;
     text-align: center;
@@ -647,14 +648,15 @@ input[type=number] {
   margin-top: 3px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1100px) {
   .content {
     position:absolute;
     top: 104px;
     left: 0px;
     right: 0px;
-    margin: 0 ;
-    max-width: 100%;
+    margin: auto;
+    width: 100%;
+    max-width: 540px;
   }
   .bground {
     padding: 0;
@@ -758,12 +760,13 @@ input[type=number] {
   margin-left: 40px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1100px) {
   #thankYou .content {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 104px;
+    width: 100%;
+    max-width: 540px;
+    min-height: 650px;
     height: auto;
   }
   .thankYouMessage {
