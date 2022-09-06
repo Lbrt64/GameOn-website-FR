@@ -40,7 +40,6 @@ function displayModalForm1() {
 
 function resetFormInputs() {
   document.forms["reserve"].reset();
-  document.forms["reserve"].reset();
 }
 // Reset error messages in case values were previously entered
 function resetErrorMessages() {
@@ -50,6 +49,7 @@ function resetErrorMessages() {
   quantityError.style.display = "none";
   locationError.style.display = "none";
   checkbox1Error.style.display = "none";
+  formError.style.display = "none";
 }
 // Reset error borders on fields in case values were previously entered
 function resetErrorBorders() {
@@ -65,11 +65,12 @@ function resetErrorBorders() {
 // called on click on button "je m'inscris" in HTML 
 function launchModal() {
   displayModalForm1();
+  scrollTop();
+  lockScreen();
   resetFormInputs();
   resetErrorMessages();
   resetErrorBorders();
   borderColorChange();
-  console.log("Show modal 1");
 }
 
 // ---------------------------
@@ -80,7 +81,7 @@ function launchModal() {
 // called when form is validated
 function closeModal1() {
   modal1.style.display = "none";
-  console.log("Close modal 1");
+  unlockScreen();
 }
 
 // ---------------------------
@@ -279,7 +280,8 @@ function checkquantityEmpty() {
 function checkquantityValue() {
   quantityInput.addEventListener("input", function (e) {
     var value = e.target.value;
-    if (value.match(/(^\d{1,10}$)/g)) {
+ // if (value.match(/(^\d{1,10}$)/g)) {
+    if (parseInt(value) === parseFloat(value)) {
       quantityValid();
     } else {
       quantityInvalid();
@@ -316,8 +318,8 @@ function locationInvalid() {
 
 function checklocationEmpty() {
   // verify if there is a checked field in the reserve form
-  // checker avec .value == "" 
-  if (document.forms["reserve"].location.value.length == 0) {
+  // if (document.forms["reserve"].location.value.length == 0) {
+  if (document.forms["reserve"].location.value == "") {
     locationInvalid();
   } else {
     locationValid();
@@ -382,7 +384,6 @@ formError.style.display = "none";
 function formValid() {
   formValide = true;
   formError.style.display = "none";
-  console.log("Form is valid!");
   // If the form is validated, close it 
   closeModal1();
   // If the form is validated, show the thank you page
@@ -392,15 +393,6 @@ function formValid() {
 function formInvalid() {
   formValide = false;
   formError.style.display = "block";
-  // Sending a log if the form is not valid to find which elements are false
-  console.log("Form not valid", 
-              ": First Name", firstValide, 
-              ", Last Name", lastValide,
-              ", Email", emailValide,
-              ", Quantity", quantityValide,
-              ", Location", locationValide,
-              ", Checkbox1", checkbox1Valide
-              );
 }
 
 // FORM VALUES CHECK
@@ -452,7 +444,6 @@ const modal2 = document.getElementById("thankYou");
 // Display the thank you popup, called when the form is validated
 function launchModal2() {
   modal2.style.display = "block";
-  console.log("Show modal 2");
 }
 
 // ---------------------------
@@ -461,7 +452,7 @@ function launchModal2() {
 // Display the thank you popup, called via the HTML when the users clicks the exit cross or confirm button
 function closeModal2() {
   modal2.style.display = "none";
-  console.log("Close modal 2");
+  unlockScreen();
 }
 
 // ---------------------------
@@ -494,10 +485,12 @@ function toggleMenu() {
     menu.classList.remove("showMenu");
     closeIcon.style.display = "none";
     menuIcon.style.display = "block";
+    hamburger.classList.remove("lockedBurger");
   } else {
     menu.classList.add("showMenu");
     closeIcon.style.display = "block";
     menuIcon.style.display = "none";
+    hamburger.classList.add("lockedBurger");
   }
 }
 
@@ -508,3 +501,20 @@ menuItems.forEach(
     menuItem.addEventListener("click", toggleMenu);
   }
 )
+
+
+// Used to lock the screen to the top when the modal is open 
+
+function scrollTop() {
+  window.scrollTo(0,0);
+}
+
+const docbody = document.querySelector("body")
+
+function lockScreen() {
+  docbody.style.overflow = "hidden";
+}
+
+function unlockScreen() {
+  docbody.style.overflow = "auto";
+}
