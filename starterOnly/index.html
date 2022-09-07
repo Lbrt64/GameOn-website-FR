@@ -82,8 +82,8 @@
 							<div class="erreur" id="emailError">Veuillez entrer un email valide</div>							
 						</div>
 						<div class="formData">
-							<label class="labelDescription" for="birthdate">Date de naissance</label>
-							<input class="text-control" type="date" id="birthdate" name="birthdate" onclick="displayDateText()"/>
+							<label class="labelDescription" for="birthdate">Date de naissance <br> </label>
+							<input class="text-control" type="date" id="birthdate" name="birthdate" onclick="displayDateText()" onfocus="displayDateText()"/>
 							<div class="erreur" id="birthdateError"></div>
 						</div>
 						<div class="formData">
@@ -110,7 +110,7 @@
 								<label class="checkbox2-label" for="checkbox1">
 									<span class="checkbox-icon"></span>
 									J'ai lu et accepté les conditions d'utilisation.
-									<div class="erreur" id="checkbox1Error">Veuillez accepter les conditions pour continuer</div>
+									<span class="erreur" id="checkbox1Error">Veuillez accepter les conditions pour continuer</span>
 								</label>
 								<input class="checkbox-input" type="checkbox" id="checkbox2" name="checkbox2" />
 								<label class="checkbox2-label" for="checkbox2">
@@ -121,7 +121,7 @@
 
 						<div class="submitContainer">
 							<input class="btn-submit button" type="submit" value="C'est parti" id="formSend"/>
-							<div class="erreurSubmit" id="formError">Veuillez compléter tous les champs requis et réessayer</div>
+							<span class="erreurSubmit" id="formError">Veuillez compléter tous les champs requis et réessayer</span>
 						</div>
 					</form>
 				</div>
