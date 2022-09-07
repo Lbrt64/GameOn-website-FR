@@ -1,22 +1,8 @@
 //------------------- EXISTING CODE -------------------//
 
-// Management of navigation menu
-// function editNav() {
-//   var x = document.getElementById("myTopnav");
-//   if (x.className === "topnav") {
-//     x.className += " responsive";
-//   } else {
-//     x.className = "topnav";
-//   }
-// }
-
 // DOM Elements
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-
-
-
-
 
 //------------------- NEW CODE -------------------//
 
@@ -37,7 +23,6 @@ function displayModalForm1() {
   modal1.style.display = "block";
 }
 // Reset form in case values were previously entered
-
 function resetFormInputs() {
   document.forms["reserve"].reset();
 }
@@ -81,7 +66,7 @@ function launchModal() {
 // called when form is validated
 function closeModal1() {
   modal1.style.display = "none";
-  hideDateText()
+  hideDateText();
   unlockScreen();
 }
 
@@ -303,7 +288,7 @@ function checkquantityValidation() {
 // No need for a checklocationValue function, because if the value is not null, the conditions are valid
 
 var locationValide = null;
-const locationInput = document.getElementById("location");
+// not used anymore : const locationInput = document.getElementById("location");
 const locationError = document.getElementById("locationError");
 locationError.style.display = "none";
 
@@ -371,7 +356,7 @@ function checkcheckbox1Validation() {
 // ---------------------------
 // 2.7 VERIFY IF ALL CONDITIONS ARE MET AT FORM SUBMISSION (COMPLIANCE + NOT EMPTY)
 // ---------------------------
-var formValide = null;
+// not used anymore : var formValide = null;
 const formError = document.getElementById("formError");
 const registerForm = document.getElementById("registerForm");
 // Prevent form from being submitted 
@@ -383,7 +368,7 @@ formError.style.display = "none";
 // FORM ERRORS (Issue #3)
 // Called if the conditions to validate the whole form are met
 function formValid() {
-  formValide = true;
+  // not used anymore : formValide = true;
   formError.style.display = "none";
   // If the form is validated, close it 
   closeModal1();
@@ -392,7 +377,7 @@ function formValid() {
 }
 
 function formInvalid() {
-  formValide = false;
+  // not used anymore : formValide = false;
   formError.style.display = "block";
 }
 
@@ -454,7 +439,7 @@ function launchModal2() {
 function closeModal2() {
   modal2.style.display = "none";
   unlockScreen();
-  hideDateText()
+  hideDateText();
 }
 
 // ---------------------------
@@ -467,9 +452,9 @@ function borderColorChange() {
     var icon = document.getElementById("checkbox-icon-"+[i]);
     var input = document.getElementById("location"+[i]);
     if (input.checked) {
-      icon.style.border = "2px solid rgb(39, 158, 122)"
+      icon.style.border = "2px solid rgb(39, 158, 122)";
     } else {
-      icon.style.border = "2px solid white"
+      icon.style.border = "2px solid white";
     }
   } 
 }
@@ -501,15 +486,14 @@ menuItems.forEach(
   function(menuItem) { 
     menuItem.addEventListener("click", toggleMenu);
   }
-)
-
+);
 
 // Lock the screen to the top when the modal is open 
 function scrollTop() {
   window.scrollTo(0,0);
 }
 
-const docbody = document.querySelector("body")
+const docbody = document.querySelector("body");
 
 function lockScreen() {
   docbody.style.overflow = "hidden";
