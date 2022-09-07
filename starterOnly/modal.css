@@ -531,6 +531,7 @@ input[type=number] {
 
 #birthdate {
   color: white;
+  -webkit-appearance: none;
 }
 
 .radioQuestion {
