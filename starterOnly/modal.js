@@ -81,6 +81,7 @@ function launchModal() {
 // called when form is validated
 function closeModal1() {
   modal1.style.display = "none";
+  hideDateText()
   unlockScreen();
 }
 
@@ -449,14 +450,15 @@ function launchModal2() {
 // ---------------------------
 // 4.2 CLOSE POPUP
 // ---------------------------
-// Display the thank you popup, called via the HTML when the users clicks the exit cross or confirm button
+// Hide the thank you popup, called via the HTML when the users clicks the exit cross or confirm button
 function closeModal2() {
   modal2.style.display = "none";
   unlockScreen();
+  hideDateText()
 }
 
 // ---------------------------
-// OTHER - Animations
+// OTHER 
 // ---------------------------
 
 // Change the border color of the radio button input if it is checked
@@ -472,8 +474,7 @@ function borderColorChange() {
   } 
 }
 
-// Mobile menu
-
+// Display modible menu
 const menu = document.querySelector(".menu");
 const menuItems = document.querySelectorAll(".menuItem");
 const hamburger= document.querySelector(".hamburger");
@@ -503,8 +504,7 @@ menuItems.forEach(
 )
 
 
-// Used to lock the screen to the top when the modal is open 
-
+// Lock the screen to the top when the modal is open 
 function scrollTop() {
   window.scrollTo(0,0);
 }
@@ -517,4 +517,13 @@ function lockScreen() {
 
 function unlockScreen() {
   docbody.style.overflow = "auto";
+}
+
+// Display the date field content after click
+function displayDateText() {
+  document.getElementById("birthdate").style.color = "black";
+}
+
+function hideDateText() {
+  document.getElementById("birthdate").style.color = "white";
 }

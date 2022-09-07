@@ -517,6 +517,10 @@ input[type=number] {
   height: 65px;
 }
 
+#birthdate {
+  color: white;
+}
+
 .radioQuestion {
   display:flex;
   flex-direction: column;
