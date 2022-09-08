@@ -1,7 +1,6 @@
 //------------------- EXISTING CODE -------------------//
 
 // DOM Elements
-// const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 //------------------- NEW CODE -------------------//
@@ -24,8 +23,7 @@ function displayModalForm1() {
 }
 // Reset form in case values were previously entered
 function resetFormInputs() {
-  document.forms["reserve"].reset();
-  // remplacer
+  document.forms.reserve.reset();
 }
 // Reset error messages in case values were previously entered
 function resetErrorMessages() {
@@ -218,7 +216,6 @@ function checkemailValue() {
       value.match(
         /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
       )
-      // @ pas besoin
     ) {
       emailValid();
     } else {
@@ -240,7 +237,7 @@ function checkemailValidation() {
 // 2.4 VERIFY QUANTITY OF TOURNAMENTS COMPLETED BY USER (COMPLIANCE + NOT EMPTY)
 // ---------------------------
 // For explanations see part 2.1 about the first name, its the same
-// EXCEPT the REGEX for numbers validation 
+// EXCEPT the use of "if (parseInt(value).toString() === value) {" for integer validation 
 
 var quantityValide = null;
 const quantityInput = document.getElementById("quantity");
@@ -268,8 +265,7 @@ function checkquantityEmpty() {
 function checkquantityValue() {
   quantityInput.addEventListener("input", function (e) {
     var value = e.target.value;
- // if (value.match(/(^\d{1,10}$)/g)) {
-    // if (parseInt(value) === parseFloat(value)) {
+    // Check if the value has nothing else than in integer 
       if (parseInt(value).toString() === value) { 
       quantityValid();
     } else {
@@ -287,11 +283,10 @@ function checkquantityValidation() {
 // 2.5 VERIFY LOCATION OF TOURNAMENT WANTED BY USER (COMPLIANCE + NOT EMPTY)
 // ---------------------------
 // For explanations see part 2.1 about the first name, its the same
-// EXCEPT for the use of document.forms["reserve"].location.value to check all the radio buttons value at once
+// EXCEPT for the use of document.forms.reserve.location.value to check all the radio buttons value at once
 // No need for a checklocationValue function, because if the value is not null, the conditions are valid
 
 var locationValide = null;
-// not used anymore : const locationInput = document.getElementById("location");
 const locationError = document.getElementById("locationError");
 locationError.style.display = "none";
 
@@ -306,9 +301,8 @@ function locationInvalid() {
 }
 
 function checklocationEmpty() {
-  // verify if there is a checked field in the reserve form
-  // if (document.forms["reserve"].location.value.length == 0) {
-  if (document.forms["reserve"].location.value == "") {
+  // Verify if there is a checked field in the reserve form
+  if (document.forms.reserve.location.value == "") {
     locationInvalid();
   } else {
     locationValid();
@@ -344,7 +338,7 @@ function checkbox1Invalid() {
 }
 
 function checkcheckbox1Empty() {
-    // verify if the checkbox is checked
+    // Verify if the checkbox is checked
   if (checkbox1Input.checked) {
     checkbox1Valid();
   } else {
@@ -359,7 +353,6 @@ function checkcheckbox1Validation() {
 // ---------------------------
 // 2.7 VERIFY IF ALL CONDITIONS ARE MET AT FORM SUBMISSION (COMPLIANCE + NOT EMPTY)
 // ---------------------------
-// not used anymore : var formValide = null;
 const formError = document.getElementById("formError");
 const registerForm = document.getElementById("registerForm");
 // Prevent form from being submitted 
@@ -380,7 +373,6 @@ function formValid() {
 }
 
 function formInvalid() {
-  // not used anymore : formValide = false;
   formError.style.display = "block";
 }
 
