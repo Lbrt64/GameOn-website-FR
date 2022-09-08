@@ -1,7 +1,7 @@
 //------------------- EXISTING CODE -------------------//
 
 // DOM Elements
-const modalBtn = document.querySelectorAll(".modal-btn");
+// const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 //------------------- NEW CODE -------------------//
@@ -25,6 +25,7 @@ function displayModalForm1() {
 // Reset form in case values were previously entered
 function resetFormInputs() {
   document.forms["reserve"].reset();
+  // remplacer
 }
 // Reset error messages in case values were previously entered
 function resetErrorMessages() {
@@ -217,6 +218,7 @@ function checkemailValue() {
       value.match(
         /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
       )
+      // @ pas besoin
     ) {
       emailValid();
     } else {
@@ -267,7 +269,8 @@ function checkquantityValue() {
   quantityInput.addEventListener("input", function (e) {
     var value = e.target.value;
  // if (value.match(/(^\d{1,10}$)/g)) {
-    if (parseInt(value) === parseFloat(value)) {
+    // if (parseInt(value) === parseFloat(value)) {
+      if (parseInt(value).toString() === value) { 
       quantityValid();
     } else {
       quantityInvalid();
