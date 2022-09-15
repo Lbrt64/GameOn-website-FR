@@ -30,6 +30,7 @@ function resetErrorMessages() {
   firstError.style.display = "none";
   lastError.style.display = "none";
   emailError.style.display = "none";
+  dateError.style.display = "none";
   quantityError.style.display = "none";
   locationError.style.display = "none";
   checkbox1Error.style.display = "none";
@@ -39,6 +40,7 @@ function resetErrorMessages() {
 function resetErrorBorders() {
   firstInput.classList.remove("redborder");
   lastInput.classList.remove("redborder");
+  dateInput.classList.remove("redborder");
   emailInput.classList.remove("redborder");
   quantityInput.classList.remove("redborder");
   checkbox1Input.classList.remove("redborder");
@@ -258,7 +260,7 @@ function checkdateEmpty() {
 function checkdateValue() {
   dateInput.addEventListener("input", function (e){
     var value = e.target.value;
-    // Check if the value is a date
+    // Check if the value is a date and if the user is roughly more than 16 years old
       if (value < "2008-01-01") { 
       dateValid();
     } else {
