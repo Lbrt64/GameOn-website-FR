@@ -214,9 +214,8 @@ function checkemailValue() {
     var value = e.target.value;
     if (
       value.match(
-        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-      )
-    ) {
+        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/)) 
+        {
       emailValid();
     } else {
       emailInvalid();
@@ -232,6 +231,47 @@ function checkemailValidation() {
 // ---------------------------
 // VERIFY BIRTHDATE -- won't do not required in specs see issue #2
 // ---------------------------
+
+var dateValide = null; 
+const dateInput = document.getElementById("birthdate");
+const dateError = document.getElementById("birthdateError");
+dateError.style.display = "none";
+
+function dateValid() {
+  dateValide = true;
+  dateError.style.display = "none";
+  dateInput.classList.remove("redborder");
+}
+
+function dateInvalid() {
+  dateValide = false;
+  dateError.style.display = "block";
+  dateInput.classList.add("redborder");
+}
+
+function checkdateEmpty() {
+  if (dateInput.value.length == 0) {
+    dateInvalid();
+  }
+}
+
+function checkdateValue() {
+  dateInput.addEventListener("input", function (e){
+    var value = e.target.value;
+    // Check if the value is a date
+      if (value < "2008-01-01") { 
+      dateValid();
+    } else {
+      dateInvalid();
+    }
+  });
+}
+
+function checkdateValidation() {
+  checkdateEmpty();
+  checkdateValue();
+}
+
 
 // ---------------------------
 // 2.4 VERIFY QUANTITY OF TOURNAMENTS COMPLETED BY USER (COMPLIANCE + NOT EMPTY)
@@ -383,6 +423,7 @@ function checkformCompletion() {
   checkfirstValidation();
   checklastValidation();
   checkemailValidation();
+  checkdateValidation();
   checkquantityValidation();
   checklocationValidation();
   checkcheckbox1Validation();
